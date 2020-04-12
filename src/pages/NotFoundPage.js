@@ -6,7 +6,7 @@ import { Error } from '@components/UI/Error';
 const NotFoundPage = () => {
   useTitle(`Страница не найдена - ${PROJECT_NAME}`);
 
-  return <Error>Страница не найдена</Error>;
+  return <Error>Page not found</Error>;
 };
 
 export default NotFoundPage;
