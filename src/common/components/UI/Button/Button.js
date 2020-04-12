@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { BUTTON_APPEARANCE } from '@components/UI/Button/constants';
-import { resetButtonStyle } from '@styles/placeholders';
 import { opacify } from 'polished';
+import { BUTTON_APPEARANCE } from '@styles/constants';
+import { resetButtonStyle } from '@styles/placeholders';
+import { Icon } from '@components/UI/Icon';
 import { styles, getCommonStyles } from './styles';
 
 const Wrapper = styled.button`
@@ -30,10 +31,13 @@ const StyledLink = styled(Link)`
 
 const ButtonChildren = styled.span`
   display: block;
-  min-width: 138px;
   font-size: ${({ theme }) => theme.fonts.size.m};
   font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
   color: inherit;
+`;
+
+const ButtonIcon = styled(Icon)`
+  margin-left: 11px;
 `;
 
 const LinkComponent = ({
@@ -44,6 +48,9 @@ const LinkComponent = ({
   appearance,
   bgColor,
   color,
+  icon,
+  iconWidth,
+  iconHeight,
 }) => (
   <StyledLink
     className={className}
@@ -52,8 +59,10 @@ const LinkComponent = ({
     appearance={appearance}
     bgColor={bgColor}
     color={color}
+    icon={icon}
   >
     {children}
+    {icon && <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />}
   </StyledLink>
 );
 
@@ -67,6 +76,9 @@ const ButtonComponent = ({
   bgColor = 'purple',
   color = 'white',
   disabled,
+  icon,
+  iconWidth,
+  iconHeight,
 }) => (
   <>
     {to ? (
@@ -90,10 +102,20 @@ const ButtonComponent = ({
         color={color}
         disabled={disabled}
       >
-        <ButtonChildren>{children}</ButtonChildren>
+        <ButtonChildren>
+          {children}{' '}
+          {icon && (
+            <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
+          )}
+        </ButtonChildren>
       </Wrapper>
     )}
   </>
 );
 
-export const Button = memo(ButtonComponent);
+const Button = memo(ButtonComponent);
+
+Button.Children = ButtonChildren;
+Button.Icon = ButtonIcon;
+
+export { Button };

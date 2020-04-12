@@ -29,6 +29,7 @@ export const theme = {
     lineHeight: {
       m: 1.5,
       l: '37px',
+      xl: '48px',
     },
     family: {
       default: `'Montserrat', sans-serif`,

@@ -4,7 +4,7 @@ import { Container } from '@components/UI/Container';
 import { Header } from './components/Header';
 
 const Main = styled.main`
-  min-height: calc(100vh - 165px);
+  min-height: calc(100vh - 190px);
 `;
 
 const LayoutComponent = ({ children, className }) => (
