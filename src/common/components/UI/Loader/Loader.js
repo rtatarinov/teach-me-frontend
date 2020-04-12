@@ -13,8 +13,8 @@ const rotate = keyframes`
 
 const Wrapper = styled.div`
   position: ${({ isStatic }) => (isStatic ? 'static' : 'absolute')};
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 
   ${({ isStatic }) =>
     !isStatic &&

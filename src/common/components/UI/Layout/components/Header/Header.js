@@ -5,6 +5,7 @@ import { SkillCounter } from '@components/UI/SkillCounter';
 
 const Wrapper = styled.header`
   padding: 71px 0;
+  margin-bottom: 25px;
 `;
 
 const StyledIcon = styled(Icon)`

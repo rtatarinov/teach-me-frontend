@@ -25,6 +25,12 @@ const Description = styled.p`
   line-height: ${({ theme }) => theme.fonts.lineHeight.l};
 `;
 
+const StyledButton = styled(Button)`
+  ${Button.Children} {
+    min-width: 138px;
+  }
+`;
+
 export const AboutProject = () => (
   <Wrapper>
     <SupermanImg src="/img/superman.png" alt="superman" />
@@ -32,6 +38,6 @@ export const AboutProject = () => (
       "Teach me" is a project that brings people together. The main goal is to
       teach the interlocutor one skill.
     </Description>
-    <Button to={ROUTES.WANT_LEARN}>Next</Button>
+    <StyledButton to={ROUTES.WANT_LEARN}>Next</StyledButton>
   </Wrapper>
 );
