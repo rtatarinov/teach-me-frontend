@@ -15,6 +15,7 @@ export const theme = {
       m: '20px',
       l: '22px',
       xl: '41px',
+      xxl: '80px',
     },
     weight: {
       thin: 100,
@@ -25,6 +26,9 @@ export const theme = {
     },
     lineHeight: {
       m: 1.5,
+    },
+    letterSpacing: {
+      default: '0.5px',
     },
     family: {
       default: `'Montserrat', sans-serif`,
