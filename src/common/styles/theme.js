@@ -11,6 +11,7 @@ export const theme = {
   fonts: {
     size: {
       default: '16px',
+      xs: '10px',
       s: '15px',
       m: '20px',
       l: '22px',
@@ -21,14 +22,13 @@ export const theme = {
       thin: 100,
       regular: 400,
       medium: 500,
+      bigMedium: 600,
       bold: 700,
       semiBold: 900,
     },
     lineHeight: {
       m: 1.5,
-    },
-    letterSpacing: {
-      default: '0.5px',
+      l: '37px',
     },
     family: {
       default: `'Montserrat', sans-serif`,
@@ -40,11 +40,14 @@ export const theme = {
   },
   borderRadius: {
     default: '16px',
+    s: '6px',
+    l: '25px',
+    xl: '45px',
   },
   zIndex: {
     default: 1,
   },
   containerWidth: {
-    [CONTAINER_TYPES.DEFAULT]: 1240,
+    [CONTAINER_TYPES.DEFAULT]: `calc(100% - 140px)`,
   },
 };

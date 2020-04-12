@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { opacify } from 'polished';
 import { ROUTES } from '@common/constants';
 import { Icon } from '@components/UI/Icon';
+import { SkillCounter } from '@components/UI/SkillCounter';
 
 const Wrapper = styled(Link)`
   display: flex;
@@ -31,17 +32,13 @@ const Description = styled.div`
   font-size: ${({ theme }) => theme.fonts.size.l};
 `;
 
-const Counter = styled.div`
+const Counter = styled(SkillCounter)`
   position: absolute;
   top: -93px;
   right: -127px;
   padding: 14px 16px;
   font-size: ${({ theme }) => theme.fonts.size.l};
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.orange};
-  border-radius: ${({ theme }) => theme.borderRadius.default};
-  transform: matrix(0.93, -0.36, 0.36, 0.93, 0, 0);
 
   &::before,
   &::after {
