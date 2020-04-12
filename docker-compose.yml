@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  node:
+    image: node:10-alpine
+    volumes:
+      - ./:/home/node
+    working_dir: /home/node
+    command: sh -c "yarn && yarn dev"
+    ports:
+      - "${HTTP_EXTERNAL_PORT}:80"
