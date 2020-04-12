@@ -16,7 +16,3 @@
 
 #eslint
 .eslintcache
-
-#cypress
-cypress/videos
-cypress/screenshots
