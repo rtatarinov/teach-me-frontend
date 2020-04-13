@@ -19,7 +19,6 @@ export const theme = {
       xxl: '80px',
     },
     weight: {
-      thin: 100,
       regular: 400,
       medium: 500,
       bigMedium: 600,

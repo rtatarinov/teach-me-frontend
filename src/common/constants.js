@@ -6,3 +6,7 @@ export const ROUTES = {
   ABOUT_PROJECT: '/about',
   WANT_LEARN: '/want-learn',
 };
+
+export const HEADER_APPEARANCE = {
+  WITH_LANGUAGES: 'with-languages',
+};

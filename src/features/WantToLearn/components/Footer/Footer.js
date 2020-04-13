@@ -6,13 +6,18 @@ import { Button } from '@components/UI/Button';
 
 const Warning = styled.div`
   margin-right: auto;
-  margin-left: 50px;
+  margin-left: 53px;
   font-weight: ${({ theme }) => theme.fonts.weight.medium};
   color: ${({ theme }) => theme.colors.orange};
 `;
 
 const StyledButton = styled(Button)`
+  ${Button.Children} {
+    font-size: ${({ theme }) => theme.fonts.size.s};
+  }
+
   ${Button.Icon} {
+    margin-left: 7px;
     transform: scaleX(-1);
   }
 `;

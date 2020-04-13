@@ -7,9 +7,9 @@ const Main = styled.main`
   min-height: calc(100vh - 190px);
 `;
 
-const LayoutComponent = ({ children, className }) => (
+const LayoutComponent = ({ children, className, headerAppearance }) => (
   <Container>
-    <Header />
+    <Header appearance={headerAppearance} />
     <Main className={className}>{children}</Main>
   </Container>
 );
