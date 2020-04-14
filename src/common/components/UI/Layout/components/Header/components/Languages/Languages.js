@@ -4,8 +4,11 @@ import styled from 'styled-components';
 import { Select } from '@components/UI/Select';
 import { opacify } from 'polished';
 import { resetButtonStyle, addHoverOpacity } from '@styles/placeholders';
+import { languages } from './constants';
 
 const Wrapper = styled.div`
+  position: relative;
+  z-index: ${({ theme }) => theme.zIndex.languagesList};
   margin-left: auto;
 `;
 
@@ -42,14 +45,8 @@ const LanguagesValue = styled.button`
   ${addHoverOpacity};
 `;
 
-const options = [
-  { value: 'russian', label: 'Russian' },
-  { value: 'english', label: 'English' },
-  { value: 'germany', label: 'Germany' },
-];
-
 export const Languages = () => {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(languages[0]);
   const [isOpenedSelect, setIsOpenedSelect] = useState(false);
   const languagesRef = useRef(null);
 
@@ -59,6 +56,11 @@ export const Languages = () => {
 
   const toggleSelect = () => {
     setIsOpenedSelect(!isOpenedSelect);
+  };
+
+  const handleLanguageChange = (value) => {
+    setSelectedOption(value);
+    hideSelect();
   };
 
   useClickAway(languagesRef, () => {
@@ -79,7 +81,15 @@ export const Languages = () => {
           {selectedOption.label}
         </LanguagesValue>
       </LanguagesWrapper>
-      {isOpenedSelect && <Select options={options} defaultValue={options[0]} />}
+      {isOpenedSelect && (
+        <Select
+          options={languages}
+          defaultValue={selectedOption}
+          menuIsOpen
+          placeholder="Choose language"
+          onChange={handleLanguageChange}
+        />
+      )}
     </Wrapper>
   );
 };

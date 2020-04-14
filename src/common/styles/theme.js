@@ -41,11 +41,14 @@ export const theme = {
   borderRadius: {
     default: '16px',
     s: '6px',
+    xm: '9px',
+    m: '14px',
     l: '25px',
     xl: '45px',
   },
   zIndex: {
     default: 1,
+    languagesList: 2,
   },
   containerWidth: {
     [CONTAINER_TYPES.DEFAULT]: `calc(100% - 140px)`,

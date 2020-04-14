@@ -7,12 +7,18 @@ const SelectComponent = ({
   defaultValue,
   name,
   styles = customStyles,
+  menuIsOpen,
+  placeholder,
+  onChange,
 }) => (
   <Select
     defaultValue={defaultValue}
     name={name}
     options={options}
     styles={styles}
+    menuIsOpen={menuIsOpen}
+    placeholder={placeholder}
+    onChange={onChange}
   />
 );
 
