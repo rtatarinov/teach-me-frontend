@@ -19,7 +19,6 @@ export const theme = {
       xxl: '80px',
     },
     weight: {
-      thin: 100,
       regular: 400,
       medium: 500,
       bigMedium: 600,
@@ -42,11 +41,14 @@ export const theme = {
   borderRadius: {
     default: '16px',
     s: '6px',
+    xm: '9px',
+    m: '14px',
     l: '25px',
     xl: '45px',
   },
   zIndex: {
     default: 1,
+    languagesList: 2,
   },
   containerWidth: {
     [CONTAINER_TYPES.DEFAULT]: `calc(100% - 140px)`,

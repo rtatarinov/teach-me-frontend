@@ -1,5 +1,10 @@
 import React from 'react';
-import { useEffectOnce, useList } from 'react-use';
+import {
+  useEffectOnce,
+  useList,
+  useLocalStorage,
+  useUpdateEffect,
+} from 'react-use';
 import styled from 'styled-components';
 import { Content } from '@components/UI/Content';
 import { Layout } from '@components/UI/Layout';
@@ -8,6 +13,7 @@ import { Error } from '@components/UI/Error';
 import { Checkbox } from '@components/UI/Checkbox';
 import { useRequest } from '@hooks/index';
 import { isEmpty } from '@utils/isEmpty';
+import { HEADER_APPEARANCE } from '@common/constants';
 import { Footer } from './components/Footer';
 import { mocks } from './mocks';
 
@@ -33,7 +39,7 @@ const StyledCheckbox = styled(Checkbox)`
 `;
 
 const Container = ({ children }) => (
-  <Wrapper>
+  <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_LANGUAGES}>
     <Content.Title>I want to learn</Content.Title>
     {children}
   </Wrapper>
@@ -46,7 +52,14 @@ export const WantToLearn = () => {
     mocks,
   });
 
-  const [selectedTags, { push, remove }] = useList([]);
+  const [savedSelectedTags, setSavedSelectedTags] = useLocalStorage(
+    'wantToLearnTags',
+    null,
+  );
+
+  const [selectedTags, { push, remove }] = useList(
+    savedSelectedTags ? savedSelectedTags : [],
+  );
 
   const handleChange = (id) => {
     const indexOfElement = selectedTags.findIndex((item) => item === id);
@@ -61,6 +74,10 @@ export const WantToLearn = () => {
   useEffectOnce(() => {
     getTags();
   });
+
+  useUpdateEffect(() => {
+    setSavedSelectedTags(selectedTags);
+  }, [selectedTags]);
 
   if (isLoading) {
     return (
