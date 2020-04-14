@@ -25,11 +25,7 @@ const Description = styled.p`
   line-height: ${({ theme }) => theme.fonts.lineHeight.l};
 `;
 
-const StyledButton = styled(Button)`
-  ${Button.Children} {
-    min-width: 138px;
-  }
-`;
+const StyledButton = styled(Button)``;
 
 export const AboutProject = () => (
   <Wrapper>

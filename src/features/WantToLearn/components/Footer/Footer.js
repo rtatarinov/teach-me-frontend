@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { isEmpty } from '@utils/isEmpty';
 import { Content } from '@components/UI/Content';
 import { Button } from '@components/UI/Button';
+import { ROUTES } from '@common/constants';
 
 const Warning = styled.div`
   margin-right: auto;
@@ -33,6 +34,7 @@ export const Footer = ({ selectedTags = [] }) => {
         disabled={!hasSelectedTags}
         icon="arrow"
         withoutOutline
+        to={ROUTES.CAN_TEACH}
       >
         Next
       </StyledButton>
