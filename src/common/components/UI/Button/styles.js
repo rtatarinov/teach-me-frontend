@@ -1,11 +1,25 @@
 import { theme } from '@styles/theme';
 import { opacify } from 'polished';
 import { BUTTON_APPEARANCE } from '@styles/constants';
+import { addHoverOpacity } from '@styles/placeholders';
 
 export const styles = {
   [BUTTON_APPEARANCE.BIG]: `
     padding: 18px 20px;
     border-radius:  ${theme.borderRadius.l};
+  `,
+
+  [BUTTON_APPEARANCE.CLEAR]: `
+    padding: 7px;
+    background-color: transparent;
+    box-shadow: none;
+
+    &:hover {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    ${addHoverOpacity};
   `,
 };
 

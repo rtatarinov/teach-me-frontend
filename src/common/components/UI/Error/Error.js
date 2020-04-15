@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 const StyledError = styled.div`
   font-size: ${({ theme }) => theme.fonts.size.s};
-  color: ${({ theme }) => theme.colors.purple};
+  font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
+  color: ${({ theme }) => theme.colors.red};
 `;
 
 const ErrorComponent = ({ children, className }) => {
