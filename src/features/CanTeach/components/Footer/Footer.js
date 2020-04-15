@@ -6,7 +6,7 @@ import { Button } from '@components/UI/Button';
 import { ICON_POSITION } from '@styles/constants';
 import { ROUTES, REQUEST_STATUS } from '@common/constants';
 import { SearchBlock } from './components/SearchBlock';
-import { buttonText, buttonBackground } from './constants';
+import { Invitation } from './components/Invitation';
 
 const BackButton = styled(Button)`
   ${Button.Children} {
@@ -19,8 +19,6 @@ const BackButton = styled(Button)`
 `;
 
 const StartButton = styled(Button)`
-  margin-left: 70px;
-
   ${Button.Children} {
     min-width: 138px;
   }
@@ -33,13 +31,7 @@ export const Footer = ({ selectedTags = [] }) => {
   );
 
   const handleClickStartButton = () => {
-    if (requestStatus === REQUEST_STATUS.READY) {
-      setRequestStatus(REQUEST_STATUS.SENT);
-    }
-
-    if (requestStatus === REQUEST_STATUS.SENT) {
-      setRequestStatus(REQUEST_STATUS.READY);
-    }
+    setRequestStatus(REQUEST_STATUS.SENT);
   };
 
   return (
@@ -54,15 +46,20 @@ export const Footer = ({ selectedTags = [] }) => {
       >
         Back
       </BackButton>
-      {requestStatus === REQUEST_STATUS.SENT && <SearchBlock />}
-      {requestStatus && (
+      {requestStatus === REQUEST_STATUS.SENT && (
+        <SearchBlock setRequestStatus={setRequestStatus} />
+      )}
+      {requestStatus === REQUEST_STATUS.SUCCESS && (
+        <Invitation setRequestStatus={setRequestStatus} />
+      )}
+      {requestStatus === REQUEST_STATUS.READY && (
         <StartButton
-          bgColor={buttonBackground[requestStatus]}
+          bgColor="purple"
           color="white"
           disabled={!hasSelectedTags}
           onClick={handleClickStartButton}
         >
-          {buttonText[requestStatus]}
+          Start
         </StartButton>
       )}
     </Content.Footer>
