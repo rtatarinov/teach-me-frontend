@@ -38,6 +38,7 @@ export const theme = {
   transition: {
     default: '0.25s',
     fast: '0.15s',
+    slow: '0.5s',
   },
   borderRadius: {
     default: '16px',

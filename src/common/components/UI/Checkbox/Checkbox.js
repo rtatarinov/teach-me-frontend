@@ -24,6 +24,21 @@ const Label = styled.label`
     cursor: default;
   `
       : addHoverOpacity};
+
+  ${({ isActive, theme, checked }) =>
+    isActive &&
+    `
+    &::after {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 6px;
+      height: 6px;
+      content: '';
+      background-color: ${checked ? theme.colors.white : theme.colors.orange};
+      border-radius: 50%;
+    }
+  `}
 `;
 
 const Input = styled.input`
@@ -50,11 +65,17 @@ const CheckboxComponent = ({
   disabled,
   checked,
   name,
+  isActive,
   onChange = Function.prototype,
   onBlur = Function.prototype,
   className,
 }) => (
-  <Label className={className} disabled={disabled} checked={checked}>
+  <Label
+    className={className}
+    disabled={disabled}
+    checked={checked}
+    isActive={isActive}
+  >
     <Input
       onChange={onChange}
       onBlur={onBlur}

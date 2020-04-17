@@ -23,15 +23,14 @@ const Wrapper = styled.button`
 `;
 
 const StyledLink = styled.div`
-  background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
-  color: ${({ theme, color }) => theme.colors[color]};
-  ${({ withoutOutline, bgColor }) => getCommonStyles(withoutOutline, bgColor)};
-  ${({ appearance }) => styles[appearance]};
-
   > a {
+    ${({ withoutOutline, bgColor }) =>
+      getCommonStyles(withoutOutline, bgColor)};
     display: inline-flex;
     text-decoration: none;
-    color: inherit;
+    background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
+    color: ${({ theme, color }) => theme.colors[color]};
+    ${({ appearance }) => styles[appearance]};
   }
 `;
 
@@ -67,9 +66,8 @@ const LinkComponent = ({
     bgColor={bgColor}
     color={color}
     icon={icon}
-    onClick={onClick}
   >
-    <Link to={to}>
+    <Link to={to} onClick={onClick}>
       {icon && iconPosition === ICON_POSITION.PREFIX && (
         <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
       )}

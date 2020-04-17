@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   useEffectOnce,
   useList,
@@ -10,7 +10,7 @@ import { Content } from '@components/UI/Content';
 import { Layout } from '@components/UI/Layout';
 import { Loader } from '@components/UI/Loader';
 import { Error } from '@components/UI/Error';
-import { Checkbox } from '@components/UI/Checkbox';
+import { List } from '@components/List';
 import { useRequest } from '@hooks/index';
 import { isEmpty } from '@utils/isEmpty';
 import { HEADER_APPEARANCE } from '@common/constants';
@@ -23,21 +23,6 @@ const Wrapper = styled(Layout)`
   height: 100%;
 `;
 
-const List = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 760px;
-  margin-bottom: auto;
-`;
-
-const StyledCheckbox = styled(Checkbox)`
-  margin-bottom: 16px;
-
-  &:not(:last-child) {
-    margin-right: 16px;
-  }
-`;
-
 const Container = ({ children }) => (
   <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_LANGUAGES}>
     <Content.Title>I want to learn</Content.Title>
@@ -46,6 +31,7 @@ const Container = ({ children }) => (
 );
 
 export const WantToLearn = () => {
+  const [isShownWarning, setIsShownWarning] = useState(false);
   const [{ isLoading, error, data: tags }, getTags] = useRequest({
     url: '#',
     initialIsLoading: true,
@@ -57,9 +43,7 @@ export const WantToLearn = () => {
     null,
   );
 
-  const [selectedTags, { push, remove }] = useList(
-    savedSelectedTags ? savedSelectedTags : [],
-  );
+  const [selectedTags, { push, remove }] = useList(savedSelectedTags || []);
 
   const handleChange = (id) => {
     const indexOfElement = selectedTags.findIndex((item) => item === id);
@@ -77,6 +61,10 @@ export const WantToLearn = () => {
 
   useUpdateEffect(() => {
     setSavedSelectedTags(selectedTags);
+
+    if (isShownWarning && selectedTags.length !== 0) {
+      setIsShownWarning(false);
+    }
   }, [selectedTags]);
 
   if (isLoading) {
@@ -90,7 +78,7 @@ export const WantToLearn = () => {
   if (error) {
     return (
       <Container>
-        <Error>Ошибка сервера</Error>
+        <Error>Server error</Error>
       </Container>
     );
   }
@@ -98,25 +86,24 @@ export const WantToLearn = () => {
   if (isEmpty(tags)) {
     return (
       <Container>
-        <Error>К сожалению список тэгов пуст</Error>
+        <Error>Unfortunately, tags list is empty</Error>
       </Container>
     );
   }
 
   return (
     <Container>
-      <List>
-        {tags.map(({ id, title }) => (
-          <StyledCheckbox
-            checked={selectedTags.includes(id)}
-            onChange={() => handleChange(id)}
-            key={id}
-          >
-            {title}
-          </StyledCheckbox>
-        ))}
+      <List items={tags} selectedItems={selectedTags} onChange={handleChange}>
+        <Content.OnlineTagsMessage>
+          – Right now someone's looking for a conversation partner for that
+          skill
+        </Content.OnlineTagsMessage>
       </List>
-      <Footer selectedTags={selectedTags} />
+      <Footer
+        selectedTags={selectedTags}
+        isShownWarning={isShownWarning}
+        setIsShownWarning={setIsShownWarning}
+      />
     </Container>
   );
 };
