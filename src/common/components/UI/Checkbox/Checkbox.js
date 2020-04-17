@@ -24,6 +24,20 @@ const Label = styled.label`
     cursor: default;
   `
       : addHoverOpacity};
+  ${({ isActive, theme, checked }) =>
+    isActive &&
+    `
+    &::after {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 6px;
+      height: 6px;
+      content: '';
+      background-color: ${checked ? theme.colors.white : theme.colors.orange};
+      border-radius: 50%;
+    }
+  `}
 `;
 
 const Input = styled.input`
@@ -40,8 +54,8 @@ const Input = styled.input`
   }
 
   &:focus-within {
-    box-shadow: 0 0 0 6px ${({ theme }) => opacify(-0.9, theme.colors.orange)};
     border-radius: ${({ theme }) => theme.borderRadius.xl};
+    box-shadow: 0 0 0 6px ${({ theme }) => opacify(-0.9, theme.colors.orange)};
   }
 `;
 
@@ -50,11 +64,17 @@ const CheckboxComponent = ({
   disabled,
   checked,
   name,
+  isActive,
   onChange = Function.prototype,
   onBlur = Function.prototype,
   className,
 }) => (
-  <Label className={className} disabled={disabled} checked={checked}>
+  <Label
+    className={className}
+    disabled={disabled}
+    checked={checked}
+    isActive={isActive}
+  >
     <Input
       onChange={onChange}
       onBlur={onBlur}

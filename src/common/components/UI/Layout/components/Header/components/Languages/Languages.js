@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   position: relative;
   z-index: ${({ theme }) => theme.zIndex.languagesList};
   margin-left: auto;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const LanguagesWrapper = styled.div`
@@ -29,15 +30,15 @@ const LanguagesValue = styled.button`
   font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
 
   &::after {
-    display: block;
     position: absolute;
     top: ${({ isOpened }) => (isOpened ? '8px' : '6px')};
     right: -12px;
+    display: block;
     width: 5px;
     height: 5px;
     content: '';
-    border-bottom: 1px solid ${({ theme }) => theme.colors.black};
     border-right: 1px solid ${({ theme }) => theme.colors.black};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.black};
     transform: ${({ isOpened }) =>
       isOpened ? `rotate(-135deg)` : `rotate(45deg)`};
   }

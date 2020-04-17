@@ -3,7 +3,7 @@ export const { API_URL } = process.env;
 
 export const ROUTES = {
   HOME: '/',
-  ABOUT_PROJECT: '/about',
+  ABOUT_PROJECT: '/about-project',
   WANT_LEARN: '/want-learn',
   CAN_TEACH: '/can-teach',
 };

@@ -6,7 +6,8 @@ const Wrapper = styled.div`
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.orange};
   border-radius: ${({ theme }) => theme.borderRadius.default};
-  transform: matrix(0.93, -0.36, 0.36, 0.93, 0, 0);
+  transition: ease ${({ theme }) => theme.transition.default} transform;
+  transform: rotate(-20deg);
 `;
 
 const SkillCounterComponent = ({ children, className }) => (

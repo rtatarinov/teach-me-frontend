@@ -10,6 +10,8 @@ const Warning = styled.div`
   margin-left: 53px;
   font-weight: ${({ theme }) => theme.fonts.weight.medium};
   color: ${({ theme }) => theme.colors.orange};
+  opacity: ${({ isTransparent }) => (isTransparent ? 0 : 1)};
+  transition: ${({ theme }) => theme.transition.fast};
 `;
 
 const StyledButton = styled(Button)`
@@ -23,22 +25,33 @@ const StyledButton = styled(Button)`
   }
 `;
 
-export const Footer = ({ selectedTags = [] }) => {
+export const Footer = ({
+  selectedTags = [],
+  setIsShownWarning,
+  isShownWarning,
+}) => {
   const hasSelectedTags = !isEmpty(selectedTags);
+  const handleClickNextButton = () => {
+    if (!hasSelectedTags) {
+      setIsShownWarning(true);
+    }
+  };
 
   return (
     <Content.Footer>
       <StyledButton
         bgColor={hasSelectedTags ? 'purple' : 'white'}
         color={hasSelectedTags ? 'white' : 'black'}
-        disabled={!hasSelectedTags}
         icon="arrow"
         withoutOutline
-        to={ROUTES.CAN_TEACH}
+        to={hasSelectedTags ? ROUTES.CAN_TEACH : null}
+        onClick={handleClickNextButton}
       >
         Next
       </StyledButton>
-      {!hasSelectedTags && <Warning>Specify what you want to study</Warning>}
+      <Warning isTransparent={!isShownWarning}>
+        Specify what you want to study
+      </Warning>
     </Content.Footer>
   );
 };

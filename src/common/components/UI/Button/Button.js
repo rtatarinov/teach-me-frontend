@@ -14,24 +14,23 @@ const Wrapper = styled.button`
   ${({ withoutOutline, bgColor }) => getCommonStyles(withoutOutline, bgColor)};
 
   &[disabled] {
+    cursor: default;
     background-color: ${({ theme, bgColor }) =>
       opacify(-0.6, theme.colors[bgColor])};
-    cursor: default;
   }
 
   ${({ appearance }) => styles[appearance]};
 `;
 
 const StyledLink = styled.div`
-  background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
-  color: ${({ theme, color }) => theme.colors[color]};
-  ${({ withoutOutline, bgColor }) => getCommonStyles(withoutOutline, bgColor)};
-  ${({ appearance }) => styles[appearance]};
-
   > a {
+    ${({ withoutOutline, bgColor }) =>
+      getCommonStyles(withoutOutline, bgColor)};
     display: inline-flex;
+    color: ${({ theme, color }) => theme.colors[color]};
     text-decoration: none;
-    color: inherit;
+    background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
+    ${({ appearance }) => styles[appearance]};
   }
 `;
 
@@ -67,9 +66,8 @@ const LinkComponent = ({
     bgColor={bgColor}
     color={color}
     icon={icon}
-    onClick={onClick}
   >
-    <Link to={to}>
+    <Link to={to} onClick={onClick}>
       {icon && iconPosition === ICON_POSITION.PREFIX && (
         <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
       )}

@@ -12,8 +12,8 @@ const Wrapper = styled(Link)`
   justify-content: center;
   flex-direction: column;
   height: 100vh;
-  text-decoration: none;
   color: ${({ theme }) => theme.colors.black};
+  text-decoration: none;
 `;
 
 const Presentation = styled.div`

@@ -1,6 +1,6 @@
 export const mocks = [
-  { id: 1, title: `Don't be alone` },
-  { id: 2, title: `To play guitar` },
+  { id: 1, title: `Don't be alone`, isActive: true },
+  { id: 2, title: `To play guitar`, isActive: true },
   { id: 3, title: `Draw` },
   { id: 4, title: `Learn English` },
   { id: 5, title: `Be more productive` },
