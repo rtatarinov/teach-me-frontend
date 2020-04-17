@@ -24,7 +24,6 @@ const Label = styled.label`
     cursor: default;
   `
       : addHoverOpacity};
-
   ${({ isActive, theme, checked }) =>
     isActive &&
     `
@@ -55,8 +54,8 @@ const Input = styled.input`
   }
 
   &:focus-within {
-    box-shadow: 0 0 0 6px ${({ theme }) => opacify(-0.9, theme.colors.orange)};
     border-radius: ${({ theme }) => theme.borderRadius.xl};
+    box-shadow: 0 0 0 6px ${({ theme }) => opacify(-0.9, theme.colors.orange)};
   }
 `;
 

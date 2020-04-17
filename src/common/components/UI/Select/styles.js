@@ -43,6 +43,7 @@ export const customStyles = {
     paddingBottom: '8px',
     borderRadius: theme.borderRadius.m,
     boxShadow: `0 11px 35px ${opacify(-0.95, theme.colors.black)}`,
+    backgroundColor: `${theme.colors.white}`,
   }),
   menu: () => ({
     position: 'static',

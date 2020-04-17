@@ -10,8 +10,8 @@ const Wrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  text-align: right;
   font-weight: ${({ theme }) => theme.fonts.weight.medium};
+  text-align: right;
 `;
 
 const StopButton = styled(Button)`

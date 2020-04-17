@@ -42,9 +42,7 @@ export const CanTeach = () => {
     null,
   );
 
-  const [selectedTags, { push, remove }] = useList(
-    savedSelectedTags ? savedSelectedTags : [],
-  );
+  const [selectedTags, { push, remove }] = useList(savedSelectedTags || []);
 
   const handleChange = (id) => {
     const indexOfElement = selectedTags.findIndex((item) => item === id);
@@ -92,8 +90,8 @@ export const CanTeach = () => {
     <Container>
       <List items={tags} selectedItems={selectedTags} onChange={handleChange}>
         <Content.OnlineTagsMessage>
-          – Right now someone's looking for a conversation partner for that
-          skill
+          {`– Right now someone's looking for a conversation partner for that
+          skill`}
         </Content.OnlineTagsMessage>
       </List>
       <Footer selectedTags={selectedTags} />

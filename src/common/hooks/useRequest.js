@@ -64,7 +64,8 @@ export const useRequest = (config) => {
 
       if (mocks) {
         await sleep(1000);
-        return handleSuccessRequest(mocks);
+        handleSuccessRequest(mocks);
+        return;
       }
 
       let requestConfig = {

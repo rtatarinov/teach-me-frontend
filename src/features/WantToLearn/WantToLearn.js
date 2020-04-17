@@ -95,8 +95,8 @@ export const WantToLearn = () => {
     <Container>
       <List items={tags} selectedItems={selectedTags} onChange={handleChange}>
         <Content.OnlineTagsMessage>
-          – Right now someone's looking for a conversation partner for that
-          skill
+          {`– Right now someone's looking for a conversation partner for that
+          skill`}
         </Content.OnlineTagsMessage>
       </List>
       <Footer

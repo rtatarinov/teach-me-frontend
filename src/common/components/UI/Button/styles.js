@@ -24,7 +24,7 @@ export const styles = {
 };
 
 export const getCommonStyles = (withoutOutline, bgColor) => {
-  let styles = `
+  let result = `
     transition: ease ${theme.transition.fast} all;
 
     &:hover {
@@ -39,8 +39,8 @@ export const getCommonStyles = (withoutOutline, bgColor) => {
   `;
 
   if (!withoutOutline) {
-    styles += `box-shadow: 0 0 0 6px ${opacify(-0.9, theme.colors[bgColor])};`;
+    result += `box-shadow: 0 0 0 6px ${opacify(-0.9, theme.colors[bgColor])};`;
   }
 
-  return styles;
+  return result;
 };

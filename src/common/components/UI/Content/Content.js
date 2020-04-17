@@ -10,18 +10,18 @@ const Title = styled.h1`
 
 const Footer = styled.footer`
   position: fixed;
-  left: 0;
   bottom: 0;
-  width: 100%;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  padding: 60px 70px 79px;
   background: linear-gradient(
     360deg,
     ${({ theme }) => theme.colors.white} 63.15%,
     rgba(255, 255, 255, 0) 100%
   );
-  padding: 60px 70px 79px;
 `;
 
 const OnlineTagsMessage = styled.div`

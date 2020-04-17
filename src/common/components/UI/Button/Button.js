@@ -14,9 +14,9 @@ const Wrapper = styled.button`
   ${({ withoutOutline, bgColor }) => getCommonStyles(withoutOutline, bgColor)};
 
   &[disabled] {
+    cursor: default;
     background-color: ${({ theme, bgColor }) =>
       opacify(-0.6, theme.colors[bgColor])};
-    cursor: default;
   }
 
   ${({ appearance }) => styles[appearance]};
@@ -27,9 +27,9 @@ const StyledLink = styled.div`
     ${({ withoutOutline, bgColor }) =>
       getCommonStyles(withoutOutline, bgColor)};
     display: inline-flex;
+    color: ${({ theme, color }) => theme.colors[color]};
     text-decoration: none;
     background-color: ${({ theme, bgColor }) => theme.colors[bgColor]};
-    color: ${({ theme, color }) => theme.colors[color]};
     ${({ appearance }) => styles[appearance]};
   }
 `;

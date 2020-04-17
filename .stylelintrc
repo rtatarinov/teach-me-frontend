@@ -32,6 +32,9 @@
     "no-empty-source": null,
     "at-rule-no-unknown": null,
     "declaration-colon-newline-after": null,
+    "value-keyword-case": ["lower", {
+      "ignoreKeywords": ["dummyValue"]
+    }],
     "property-no-unknown": [
       true,
       {

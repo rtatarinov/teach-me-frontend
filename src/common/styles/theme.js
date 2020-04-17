@@ -36,7 +36,7 @@ export const theme = {
     },
   },
   transition: {
-    default: '0.25s',
+    default: '0.3s',
     fast: '0.15s',
     slow: '0.5s',
   },
@@ -51,6 +51,8 @@ export const theme = {
   zIndex: {
     default: 1,
     languagesList: 2,
+    rocket: 2,
+    astronaut: 3,
   },
   containerWidth: {
     [CONTAINER_TYPES.DEFAULT]: `calc(100% - 140px)`,
