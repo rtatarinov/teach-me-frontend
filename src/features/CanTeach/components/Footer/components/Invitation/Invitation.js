@@ -1,8 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { Button } from '@components/UI/Button';
-import { BUTTON_APPEARANCE } from '@styles/constants';
-import { REQUEST_STATUS } from '@common/constants';
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,17 +8,9 @@ const Wrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
+  max-width: 300px;
   font-weight: ${({ theme }) => theme.fonts.weight.medium};
   text-align: right;
-`;
-
-const CancelButton = styled(Button)`
-  position: relative;
-  left: 7px;
-
-  ${Button.Children} {
-    font-size: ${({ theme }) => theme.fonts.size.default};
-  }
 `;
 
 const AcceptButton = styled(Button)`
@@ -31,24 +21,13 @@ const AcceptButton = styled(Button)`
   }
 `;
 
-const InvitationComponent = ({ setRequestStatus }) => {
-  const handleClickCancelButton = () => {
-    setRequestStatus(REQUEST_STATUS.READY);
-  };
-
+const InvitationComponent = () => {
   const handleClickAcceptButton = () => {};
 
   return (
     <Wrapper>
       <TextWrapper>
-        <CancelButton
-          appearance={BUTTON_APPEARANCE.CLEAR}
-          color="orange"
-          onClick={handleClickCancelButton}
-        >
-          Cancel
-        </CancelButton>
-        <div>Conversationalist found</div>
+        If the conversation partner does not connect, restart the search
       </TextWrapper>
       <AcceptButton
         bgColor="green"

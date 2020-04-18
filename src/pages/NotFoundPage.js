@@ -47,10 +47,7 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-image: url('/img/404_bg.png');
-  background-repeat: repeat-x;
-  background-position: left top;
-  background-size: cover;
+  background-image: linear-gradient(180deg, #3c2b59 0%, #502e5e 100%);
 `;
 
 const Stars = styled.div`

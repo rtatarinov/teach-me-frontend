@@ -49,9 +49,7 @@ export const Footer = ({ selectedTags = [] }) => {
       {requestStatus === REQUEST_STATUS.SENT && (
         <SearchBlock setRequestStatus={setRequestStatus} />
       )}
-      {requestStatus === REQUEST_STATUS.SUCCESS && (
-        <Invitation setRequestStatus={setRequestStatus} />
-      )}
+      {requestStatus === REQUEST_STATUS.SUCCESS && <Invitation />}
       {requestStatus === REQUEST_STATUS.READY && (
         <StartButton
           bgColor="purple"
