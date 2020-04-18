@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import { default as MediaScreen } from 'react-media';
-import { QUERIES } from '@styles/constants';
+import { QUERY_EXPRESSIONS } from '@styles/constants';
 
 const MediaComponent = ({
-  queryExpression = QUERIES.MOBILE,
+  queryExpression = QUERY_EXPRESSIONS.MOBILE,
   matchedBlock = null,
   replacedBlock = null,
 }) => (

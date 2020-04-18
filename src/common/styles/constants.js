@@ -17,3 +17,8 @@ export const QUERIES = {
   TABLET: 1024,
   MOBILE: 767,
 };
+
+export const QUERY_EXPRESSIONS = {
+  TABLET: `(max-width: ${QUERIES.TABLET}px)`,
+  MOBILE: `(max-width: ${QUERIES.MOBILE}px)`,
+};

@@ -1,6 +1,6 @@
 import React, { memo, useContext } from 'react';
 import styled from 'styled-components';
-import { QUERIES } from '@styles/constants';
+import { QUERIES, QUERY_EXPRESSIONS } from '@styles/constants';
 import { HEADER_APPEARANCE } from '@common/constants';
 import { CollapsedHeader } from '@context/collapsedHeader';
 import { Icon } from '@components/UI/Icon';
@@ -65,18 +65,14 @@ const HeaderComponent = ({ appearance, className }) => {
         <Logo name="logo" width={94} height={16} />
         <Counter />
         <Media
-          queryExpression={QUERIES.TABLET}
-          replacedBlock={
-            <>
-              <Slogan>Skills in 15 minutes</Slogan>
-            </>
-          }
+          queryExpression={QUERY_EXPRESSIONS.TABLET}
+          replacedBlock={<Slogan>Skills in 15 minutes</Slogan>}
         />
       </LogoWrapper>
       {appearance === HEADER_APPEARANCE.WITH_NAVIGATION && (
         <>
           <Media
-            queryExpression={QUERIES.TABLET}
+            queryExpression={QUERY_EXPRESSIONS.TABLET}
             replacedBlock={<Navigation />}
           />
           <Languages />
