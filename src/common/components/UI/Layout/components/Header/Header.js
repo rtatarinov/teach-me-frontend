@@ -15,6 +15,8 @@ const Wrapper = styled.header`
 `;
 
 const Counter = styled(SkillCounter)`
+  position: relative;
+  top: 1px;
   padding: 6px 8px;
   margin-right: 11px;
   font-size: ${({ theme }) => theme.fonts.size.xs};

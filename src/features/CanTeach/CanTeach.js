@@ -25,7 +25,9 @@ const Wrapper = styled(Layout)`
 
 const Container = ({ children }) => (
   <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_LANGUAGES}>
-    <Content.Title>I can teach</Content.Title>
+    <Content.Title>
+      I can teach<span role="img"> </span>‍‍🎓
+    </Content.Title>
     {children}
   </Wrapper>
 );
