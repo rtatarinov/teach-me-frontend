@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import {
   useEffectOnce,
   useList,
   useLocalStorage,
   useUpdateEffect,
 } from 'react-use';
-import styled from 'styled-components';
+import { HEADER_APPEARANCE } from '@common/constants';
 import { Content } from '@components/UI/Content';
-import { Layout } from '@components/UI/Layout';
 import { Loader } from '@components/UI/Loader';
 import { Error } from '@components/UI/Error';
+import { Layout } from '@components/UI/Layout';
+import { ListWrapper } from '@components/ListWrapper';
 import { List } from '@components/List';
 import { useRequest } from '@hooks/index';
 import { isEmpty } from '@utils/isEmpty';
-import { HEADER_APPEARANCE } from '@common/constants';
 import { Footer } from './components/Footer';
 import { mocks } from './mocks';
 
 const Wrapper = styled(Layout)`
-  display: flex;
-  flex-direction: column;
   height: 100%;
 `;
 
+const Title = () => (
+  <Content.Title>
+    I want to learn<span role="img"> </span>🤓
+  </Content.Title>
+);
+
 const Container = ({ children }) => (
   <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_LANGUAGES}>
-    <Content.Title>
-      I want to learn<span role="img"> </span>🤓
-    </Content.Title>
-    {children}
+    <ListWrapper title={<Title />}>{children}</ListWrapper>
   </Wrapper>
 );
 

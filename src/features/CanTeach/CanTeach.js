@@ -10,6 +10,7 @@ import { Content } from '@components/UI/Content';
 import { Layout } from '@components/UI/Layout';
 import { Loader } from '@components/UI/Loader';
 import { Error } from '@components/UI/Error';
+import { ListWrapper } from '@components/ListWrapper';
 import { List } from '@components/List';
 import { useRequest } from '@hooks/index';
 import { isEmpty } from '@utils/isEmpty';
@@ -18,17 +19,18 @@ import { Footer } from './components/Footer';
 import { mocks } from './mocks';
 
 const Wrapper = styled(Layout)`
-  display: flex;
-  flex-direction: column;
   height: 100%;
 `;
 
+const Title = () => (
+  <Content.Title>
+    I can teach<span role="img"> </span>‍‍🎓
+  </Content.Title>
+);
+
 const Container = ({ children }) => (
   <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_LANGUAGES}>
-    <Content.Title>
-      I can teach<span role="img"> </span>‍‍🎓
-    </Content.Title>
-    {children}
+    <ListWrapper title={<Title />}>{children}</ListWrapper>
   </Wrapper>
 );
 
