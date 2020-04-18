@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { useClickAway } from 'react-use';
+import { useClickAway, useList, useKeyPressEvent } from 'react-use';
 import styled from 'styled-components';
-import { Select } from '@components/UI/Select';
 import { opacify } from 'polished';
+import { Content } from '@components/UI/Content';
+import { Alert } from '@components/UI/Alert';
 import { resetButtonStyle, addHoverOpacity } from '@styles/placeholders';
+import { LanguagesItem } from './components';
 import { languages } from './constants';
 
 const Wrapper = styled.div`
@@ -22,6 +24,24 @@ const LanguagesWrapper = styled.div`
 const LanguagesTitle = styled.span`
   padding: 0 8px;
   color: ${({ theme }) => opacify(-0.4, theme.colors.black)};
+`;
+
+const LanguagesListWrapper = styled.div`
+  position: absolute;
+  top: calc(100% + 5px);
+  right: -15px;
+  width: 342px;
+  padding-top: 24px;
+  padding-bottom: 8px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: ${({ theme }) => theme.borderRadius.m};
+  box-shadow: ${({ theme }) =>
+    `0 11px 35px ${opacify(-0.95, theme.colors.black)}`};
+`;
+
+const SubTitle = styled(Content.SubTitle)`
+  padding: 0 24px;
+  margin-bottom: 12px;
 `;
 
 const LanguagesValue = styled.button`
@@ -47,7 +67,8 @@ const LanguagesValue = styled.button`
 `;
 
 export const Languages = () => {
-  const [selectedOption, setSelectedOption] = useState(languages[0]);
+  const [isShownAlert, setIsShownAlert] = useState(false);
+  const [selectedOptions, { push, remove }] = useList([languages[0]]);
   const [isOpenedSelect, setIsOpenedSelect] = useState(false);
   const languagesRef = useRef(null);
 
@@ -59,9 +80,22 @@ export const Languages = () => {
     setIsOpenedSelect(!isOpenedSelect);
   };
 
-  const handleLanguageChange = (value) => {
-    setSelectedOption(value);
-    hideSelect();
+  const handleLanguageChange = (language) => {
+    const { value } = language;
+    const indexOfElement = selectedOptions.findIndex(
+      (item) => item.value === value,
+    );
+
+    if (selectedOptions.length === 1 && indexOfElement !== -1) {
+      setIsShownAlert(true);
+      return;
+    }
+
+    if (indexOfElement === -1) {
+      push(language);
+    } else {
+      remove(indexOfElement);
+    }
   };
 
   useClickAway(languagesRef, () => {
@@ -70,8 +104,17 @@ export const Languages = () => {
     }
   });
 
+  useKeyPressEvent('Escape', () => {
+    if (isOpenedSelect) {
+      hideSelect();
+    }
+  });
+
   return (
     <Wrapper ref={languagesRef}>
+      <Alert isShown={isShownAlert} setIsShown={setIsShownAlert}>
+        You need to select at least one language
+      </Alert>
       <LanguagesWrapper>
         <LanguagesTitle>My language is</LanguagesTitle>
         <LanguagesValue
@@ -79,17 +122,21 @@ export const Languages = () => {
           isOpened={isOpenedSelect}
           onClick={toggleSelect}
         >
-          {selectedOption.label}
+          {selectedOptions.map((item) => item.label).join(', ')}
         </LanguagesValue>
       </LanguagesWrapper>
       {isOpenedSelect && (
-        <Select
-          options={languages}
-          defaultValue={selectedOption}
-          menuIsOpen
-          placeholder="Choose language"
-          onChange={handleLanguageChange}
-        />
+        <LanguagesListWrapper>
+          <SubTitle>Choose language</SubTitle>
+          {languages.map((item) => (
+            <LanguagesItem
+              key={item.value}
+              language={item}
+              isSelected={selectedOptions.includes(item)}
+              onChange={handleLanguageChange}
+            />
+          ))}
+        </LanguagesListWrapper>
       )}
     </Wrapper>
   );

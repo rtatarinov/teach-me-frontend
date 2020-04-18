@@ -42,6 +42,7 @@ export const theme = {
   },
   borderRadius: {
     default: '16px',
+    xs: '4px',
     s: '6px',
     xm: '9px',
     m: '14px',
@@ -53,6 +54,7 @@ export const theme = {
     languagesList: 2,
     rocket: 2,
     astronaut: 3,
+    alert: 4,
   },
   containerWidth: {
     [CONTAINER_TYPES.DEFAULT]: `calc(100% - 140px)`,

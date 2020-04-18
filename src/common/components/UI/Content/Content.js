@@ -8,6 +8,12 @@ const Title = styled.h1`
   line-height: ${({ theme }) => theme.fonts.lineHeight.xl};
 `;
 
+const SubTitle = styled.h2`
+  margin: 0 0 20px;
+  font-size: ${({ theme }) => theme.fonts.size.m};
+  font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
+`;
+
 const Footer = styled.footer`
   position: fixed;
   bottom: 0;
@@ -16,7 +22,7 @@ const Footer = styled.footer`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 60px 70px 79px;
+  padding: 60px 70px 50px;
   background: linear-gradient(
     360deg,
     ${({ theme }) => theme.colors.white} 63.15%,
@@ -43,4 +49,4 @@ const OnlineTagsMessage = styled.div`
   }
 `;
 
-export const Content = { Title, Footer, OnlineTagsMessage };
+export const Content = { Title, SubTitle, Footer, OnlineTagsMessage };

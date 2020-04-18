@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useEffectOnce } from 'react-use';
 import { opacify } from 'polished';
+import { history } from '@src/history';
 import { ROUTES } from '@common/constants';
 import { Icon } from '@components/UI/Icon';
 import { SkillCounter } from '@components/UI/SkillCounter';
@@ -64,12 +66,30 @@ const Counter = styled(SkillCounter)`
   }
 `;
 
-export const Home = () => (
-  <Wrapper to={ROUTES.ABOUT_PROJECT}>
-    <Presentation>
-      <Counter>+1</Counter>
-      <Logo name="logo" width={392} height={66} />
-      <Description>+ 1 skill in 15 minutes</Description>
-    </Presentation>
-  </Wrapper>
-);
+const TIME_OF_DISPLAY_PAGE = 2000;
+
+export const Home = () => {
+  const delayDisplayPage = () => {
+    setTimeout(() => {
+      history.push(ROUTES.ABOUT_PROJECT);
+    }, TIME_OF_DISPLAY_PAGE);
+  };
+
+  useEffectOnce(() => {
+    delayDisplayPage();
+
+    return () => {
+      clearTimeout(delayDisplayPage);
+    };
+  });
+
+  return (
+    <Wrapper to={ROUTES.ABOUT_PROJECT}>
+      <Presentation>
+        <Counter>+1</Counter>
+        <Logo name="logo" width={392} height={66} />
+        <Description>+ 1 skill in 15 minutes</Description>
+      </Presentation>
+    </Wrapper>
+  );
+};

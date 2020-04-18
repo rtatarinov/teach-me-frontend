@@ -1,7 +1,11 @@
 export const languages = [
-  { value: 'russian', label: 'Russian' },
   { value: 'english', label: 'English' },
-  { value: 'germany', label: 'Germany' },
-  { value: 'france', label: 'French' },
-  { value: 'ukraine', label: 'Ukraine' },
+  { value: 'spanish', label: 'Spanish' },
+  { value: 'chinese', label: 'Chinese' },
+  { value: 'russian', label: 'Russian' },
+  { value: 'french', label: 'French' },
+  { value: 'german', label: 'German' },
+  { value: 'italian', label: 'Italian' },
+  { value: 'portuguese', label: 'Portuguese' },
+  { value: 'japanese', label: 'Japanese' },
 ];

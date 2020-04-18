@@ -36,6 +36,7 @@ const StyledLink = styled.div`
 
 const ButtonChildren = styled.span`
   display: block;
+  min-width: 138px;
   font-size: ${({ theme }) => theme.fonts.size.m};
   font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
   color: inherit;
@@ -46,7 +47,6 @@ const ButtonIcon = styled(Icon)`
 `;
 
 const LinkComponent = ({
-  className,
   to,
   withoutOutline,
   children,
@@ -58,6 +58,7 @@ const LinkComponent = ({
   iconHeight,
   iconPosition,
   onClick,
+  className,
 }) => (
   <StyledLink
     className={className}
