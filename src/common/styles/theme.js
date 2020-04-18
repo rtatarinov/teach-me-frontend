@@ -4,6 +4,7 @@ export const theme = {
   colors: {
     white: '#fff',
     black: '#000',
+    gray: '#dadada',
     purple: '#655eb0',
     orange: '#f89a42',
     green: '#34c759',
@@ -28,6 +29,7 @@ export const theme = {
     },
     lineHeight: {
       m: 1.5,
+      s: '25px',
       l: '37px',
       xl: '48px',
     },

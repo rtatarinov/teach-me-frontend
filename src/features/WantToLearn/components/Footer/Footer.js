@@ -15,7 +15,9 @@ const Warning = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  padding: 12px 23px;
+  & > a {
+    padding: 12px 23px;
+  }
 
   ${Button.Children} {
     min-width: 0;

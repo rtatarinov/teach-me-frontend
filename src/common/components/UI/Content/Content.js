@@ -33,7 +33,7 @@ const Footer = styled.footer`
 const OnlineTagsMessage = styled.div`
   position: relative;
   padding-left: 38px;
-  margin-top: 60px;
+  margin-top: 30px;
   color: ${({ theme }) => opacify(-0.4, theme.colors.black)};
 
   &::before {

@@ -7,7 +7,7 @@ import {
 } from 'react-use';
 import styled from 'styled-components';
 import { Content } from '@components/UI/Content';
-import { Layout } from '@components/UI/Layout';
+import { Layout } from '@components/Layout';
 import { Loader } from '@components/UI/Loader';
 import { Error } from '@components/UI/Error';
 import { ListWrapper } from '@components/ListWrapper';
@@ -29,7 +29,7 @@ const Title = () => (
 );
 
 const Container = ({ children }) => (
-  <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_LANGUAGES}>
+  <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_NAVIGATION}>
     <ListWrapper title={<Title />}>{children}</ListWrapper>
   </Wrapper>
 );

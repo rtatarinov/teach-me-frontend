@@ -4,12 +4,13 @@ export const { API_URL } = process.env;
 export const ROUTES = {
   HOME: '/',
   ABOUT_PROJECT: '/about-project',
+  ABOUT_US: '/about-us',
   WANT_LEARN: '/want-learn',
   CAN_TEACH: '/can-teach',
 };
 
 export const HEADER_APPEARANCE = {
-  WITH_LANGUAGES: 'with-languages',
+  WITH_NAVIGATION: 'with-languages',
 };
 
 export const REQUEST_STATUS = {

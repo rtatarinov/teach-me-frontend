@@ -5,8 +5,9 @@ import { useEffectOnce, useScroll, useUpdateEffect } from 'react-use';
 import { CollapsedHeader } from '@context/collapsedHeader';
 
 const Wrapper = styled.div`
-  height: calc(100vh - 300px);
+  height: calc(100vh - 200px);
   overflow-y: auto;
+  padding-bottom: 50px;
   ${customScroll};
 `;
 

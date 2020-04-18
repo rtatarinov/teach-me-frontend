@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Layout } from '@components/UI/Layout';
+import { Layout } from '@components/Layout';
 import { Button } from '@components/UI/Button';
 import { ROUTES } from '@common/constants';
 

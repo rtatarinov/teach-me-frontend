@@ -61,12 +61,12 @@ const LinkComponent = ({
   className,
 }) => (
   <StyledLink
-    className={className}
     withoutOutline={withoutOutline}
     appearance={appearance}
     bgColor={bgColor}
     color={color}
     icon={icon}
+    className={className}
   >
     <Link to={to} onClick={onClick}>
       {icon && iconPosition === ICON_POSITION.PREFIX && (

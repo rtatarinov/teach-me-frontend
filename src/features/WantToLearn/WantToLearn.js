@@ -10,7 +10,7 @@ import { HEADER_APPEARANCE } from '@common/constants';
 import { Content } from '@components/UI/Content';
 import { Loader } from '@components/UI/Loader';
 import { Error } from '@components/UI/Error';
-import { Layout } from '@components/UI/Layout';
+import { Layout } from '@components/Layout';
 import { ListWrapper } from '@components/ListWrapper';
 import { List } from '@components/List';
 import { useRequest } from '@hooks/index';
@@ -29,7 +29,7 @@ const Title = () => (
 );
 
 const Container = ({ children }) => (
-  <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_LANGUAGES}>
+  <Wrapper headerAppearance={HEADER_APPEARANCE.WITH_NAVIGATION}>
     <ListWrapper title={<Title />}>{children}</ListWrapper>
   </Wrapper>
 );
@@ -82,7 +82,7 @@ export const WantToLearn = () => {
   if (error) {
     return (
       <Container>
-        <Error>Server error</Error>
+        <Error>Server error. Please, reload the page.</Error>
       </Container>
     );
   }

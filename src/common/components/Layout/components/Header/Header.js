@@ -5,6 +5,7 @@ import { SkillCounter } from '@components/UI/SkillCounter';
 import { HEADER_APPEARANCE } from '@common/constants';
 import { CollapsedHeader } from '@context/collapsedHeader';
 import { Languages } from './components/Languages';
+import { Navigation } from './components/Navigation';
 
 const Wrapper = styled.header`
   display: flex;
@@ -62,7 +63,12 @@ const HeaderComponent = ({ appearance, className }) => {
         <Counter>+1</Counter>
         <Slogan>Skills in 15 minutes</Slogan>
       </LogoWrapper>
-      {appearance === HEADER_APPEARANCE.WITH_LANGUAGES && <Languages />}
+      {appearance === HEADER_APPEARANCE.WITH_NAVIGATION && (
+        <>
+          <Navigation />
+          <Languages />
+        </>
+      )}
     </Wrapper>
   );
 };

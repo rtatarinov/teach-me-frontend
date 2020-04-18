@@ -11,7 +11,6 @@ import { languages } from './constants';
 const Wrapper = styled.div`
   position: relative;
   z-index: ${({ theme }) => theme.zIndex.languagesList};
-  margin-left: auto;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
