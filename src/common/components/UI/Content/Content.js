@@ -1,5 +1,6 @@
 import { opacify } from 'polished';
 import styled from 'styled-components';
+import { media } from '@styles/utils';
 
 const Title = styled.h1`
   margin: 0 0 40px;
@@ -28,6 +29,9 @@ const Footer = styled.footer`
     ${({ theme }) => theme.colors.white} 63.15%,
     rgba(255, 255, 255, 0) 100%
   );
+  ${media.TABLET`
+    padding: 50px
+  `}
 `;
 
 const OnlineTagsMessage = styled.div`

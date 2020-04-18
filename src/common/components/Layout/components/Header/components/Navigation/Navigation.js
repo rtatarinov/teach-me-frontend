@@ -5,7 +5,6 @@ import { NavigationItem } from './components/NavigationItem';
 
 const Wrapper = styled.nav`
   margin-right: 60px;
-  margin-left: auto;
 `;
 
 const links = [

@@ -8,17 +8,12 @@ import { Socials } from './components/Socials';
 
 const BackButton = styled(Button)`
   ${Button.Children} {
+    min-width: 0;
     font-size: ${({ theme }) => theme.fonts.size.s};
   }
 
   ${Button.Icon} {
     margin-right: 7px;
-  }
-`;
-
-const StartButton = styled(Button)`
-  ${Button.Children} {
-    min-width: 138px;
   }
 `;
 

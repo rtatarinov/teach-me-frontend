@@ -38,9 +38,13 @@ const Counter = styled(SkillCounter)`
   position: absolute;
   top: -93px;
   right: -127px;
-  padding: 14px 16px;
   font-size: ${({ theme }) => theme.fonts.size.l};
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
+
+  & > img {
+    width: 48px;
+    height: 48px;
+  }
 
   &::before,
   &::after {
@@ -86,7 +90,7 @@ export const Home = () => {
   return (
     <Wrapper to={ROUTES.ABOUT_PROJECT}>
       <Presentation>
-        <Counter>+1</Counter>
+        <Counter />
         <Logo name="logo" width={392} height={66} />
         <Description>+ 1 skill in 15 minutes</Description>
       </Presentation>

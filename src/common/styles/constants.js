@@ -15,5 +15,5 @@ export const ICON_POSITION = {
 
 export const QUERIES = {
   TABLET: 1024,
-  MOBILE: 375,
+  MOBILE: 767,
 };

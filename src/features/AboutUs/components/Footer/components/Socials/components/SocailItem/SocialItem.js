@@ -21,7 +21,7 @@ const SocialItemComponent = ({ icon, link, className }) => (
     href={icon === 'email' ? `mailto: ${link}` : link}
     className={className}
   >
-    <Icon name={icon} width={22} height={22} />
+    <Icon name={icon} width={40} height={40} />
   </Social>
 );
 

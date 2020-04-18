@@ -1,10 +1,17 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+import { media } from '@styles/utils';
 
 const Member = styled.section`
   max-width: 300px;
   font-size: ${({ theme }) => theme.fonts.size.s};
   line-height: ${({ theme }) => theme.fonts.lineHeight.s};
+  ${media.TABLET`
+    max-width: 280px;
+  `}
+  ${media.MOBILE`
+    max-width: 100%;
+  `}
 `;
 
 const Header = styled.div`
@@ -15,10 +22,10 @@ const Header = styled.div`
 
 const Avatar = styled.div`
   position: relative;
-  overflow: hidden;
   width: 69px;
   height: 69px;
   margin-right: 22px;
+  overflow: hidden;
   border-radius: 50%;
 `;
 

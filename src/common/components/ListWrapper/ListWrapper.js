@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import { customScroll } from '@styles/placeholders';
 import { useEffectOnce, useScroll, useUpdateEffect } from 'react-use';
 import { CollapsedHeader } from '@context/collapsedHeader';
+import { media } from '@styles/utils';
 
 const Wrapper = styled.div`
   height: calc(100vh - 200px);
-  overflow-y: auto;
   padding-bottom: 50px;
+  overflow-y: auto;
   ${customScroll};
+  ${media.TABLET`
+    height: calc(100vh - 230px);
+  `}
 `;
 
 export const ListWrapper = ({ children, title }) => {

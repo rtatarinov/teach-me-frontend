@@ -1,15 +1,26 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+import { media } from '@styles/utils';
 import { TeamMember } from './components/TeamMember';
 
 const Wrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  ${media.TABLET`
+    justify-content: space-between;
+    flex-wrap: wrap;
+  `}
+  ${media.MOBILE`
+    display: block;
+  `}
 `;
 
 const Member = styled(TeamMember)`
   &:not(:last-child) {
     margin-right: 120px;
+    ${media.TABLET`
+      margin-right: 20px;
+      margin-bottom: 30px;
+    `}
   }
 `;
 

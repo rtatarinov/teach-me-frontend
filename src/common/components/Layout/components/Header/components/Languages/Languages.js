@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useClickAway, useList, useKeyPressEvent } from 'react-use';
 import styled from 'styled-components';
 import { opacify } from 'polished';
+import { media } from '@styles/utils';
 import { Content } from '@components/UI/Content';
 import { Alert } from '@components/UI/Alert';
 import { resetButtonStyle, addHoverOpacity } from '@styles/placeholders';
@@ -12,17 +13,27 @@ const Wrapper = styled.div`
   position: relative;
   z-index: ${({ theme }) => theme.zIndex.languagesList};
   background-color: ${({ theme }) => theme.colors.white};
+  ${media.TABLET`
+    max-width: calc(100% - 170px);
+    margin-left: 20px;
+  `}
 `;
 
 const LanguagesWrapper = styled.div`
+  position: relative;
+  left: 15px;
   display: flex;
   align-items: center;
   font-size: ${({ theme }) => theme.fonts.size.s};
+  ${media.TABLET`
+    left: 0;
+  `}
 `;
 
 const LanguagesTitle = styled.span`
   padding: 0 8px;
   color: ${({ theme }) => opacify(-0.4, theme.colors.black)};
+  white-space: nowrap;
 `;
 
 const LanguagesListWrapper = styled.div`
@@ -46,12 +57,20 @@ const SubTitle = styled(Content.SubTitle)`
 const LanguagesValue = styled.button`
   ${resetButtonStyle};
   position: relative;
+  max-width: 340px;
+  padding-right: 15px;
+  overflow: hidden;
   font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  ${media.TABLET`
+    max-width: 100%;
+  `}
 
   &::after {
     position: absolute;
     top: ${({ isOpened }) => (isOpened ? '8px' : '6px')};
-    right: -12px;
+    right: 3px;
     display: block;
     width: 5px;
     height: 5px;
