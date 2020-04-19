@@ -13,7 +13,7 @@ import { Error } from '@components/UI/Error';
 import { Layout } from '@components/Layout';
 import { ListWrapper } from '@components/ListWrapper';
 import { List } from '@components/List';
-import { useRequest } from '@hooks/index';
+import { useRequest } from '@hooks/useRequest';
 import { isEmpty } from '@utils/isEmpty';
 import { Footer } from './components/Footer';
 import { mocks } from './mocks';

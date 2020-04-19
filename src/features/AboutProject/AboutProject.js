@@ -3,15 +3,25 @@ import styled from 'styled-components';
 import { Layout } from '@components/Layout';
 import { Button } from '@components/UI/Button';
 import { ROUTES } from '@common/constants';
+import { useScreenSize } from '@hooks/useScreenSize';
 
-const Wrapper = styled(Layout)`
+const styles = `
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100%;
-  padding-bottom: 165px;
   text-align: center;
+`;
+
+const MobileWrapper = styled.div`
+  ${styles};
+  min-height: 100vh;
+`;
+
+const Wrapper = styled(Layout)`
+  padding-bottom: 165px;
+  ${styles};
 `;
 
 const SupermanImg = styled.img`
@@ -25,13 +35,27 @@ const Description = styled.p`
   line-height: ${({ theme }) => theme.fonts.lineHeight.l};
 `;
 
-export const AboutProject = () => (
-  <Wrapper>
+const Content = () => (
+  <>
     <SupermanImg src="/img/superman.png" alt="superman" />
     <Description>
       &ldquo;Teach me&rdquo; is a project that brings people together. The main
       goal is to teach the interlocutor one skill.
     </Description>
     <Button to={ROUTES.WANT_LEARN}>Next</Button>
-  </Wrapper>
+  </>
 );
+
+export const AboutProject = () => {
+  const { isMobile } = useScreenSize();
+
+  return isMobile ? (
+    <MobileWrapper>
+      <Content />
+    </MobileWrapper>
+  ) : (
+    <Wrapper>
+      <Content />
+    </Wrapper>
+  );
+};

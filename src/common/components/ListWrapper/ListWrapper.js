@@ -13,6 +13,9 @@ const Wrapper = styled.div`
   ${media.TABLET`
     height: calc(100vh - 230px);
   `}
+  ${media.MOBILE`
+    padding-bottom: 25px;
+  `}
 `;
 
 export const ListWrapper = ({ children, title }) => {

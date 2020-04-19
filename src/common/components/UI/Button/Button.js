@@ -6,6 +6,7 @@ import { BUTTON_APPEARANCE, ICON_POSITION } from '@styles/constants';
 import { resetButtonStyle } from '@styles/placeholders';
 import { Icon } from '@components/UI/Icon';
 import { styles, getCommonStyles } from './styles';
+import { media } from '@styles/utils';
 
 const Wrapper = styled.button`
   ${resetButtonStyle};
@@ -40,6 +41,9 @@ const ButtonChildren = styled.span`
   font-size: ${({ theme }) => theme.fonts.size.m};
   font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
   color: inherit;
+  ${media.MOBILE`
+    min-width: 120px;
+  `}
 `;
 
 const ButtonIcon = styled(Icon)`

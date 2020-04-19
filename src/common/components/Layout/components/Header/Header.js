@@ -1,12 +1,11 @@
 import React, { memo, useContext } from 'react';
 import styled from 'styled-components';
-import { QUERIES, QUERY_EXPRESSIONS } from '@styles/constants';
 import { HEADER_APPEARANCE } from '@common/constants';
 import { CollapsedHeader } from '@context/collapsedHeader';
 import { Icon } from '@components/UI/Icon';
 import { SkillCounter } from '@components/UI/SkillCounter';
-import { Media } from '@components/Media';
 import { media } from '@styles/utils';
+import { useScreenSize } from '@hooks/useScreenSize';
 import { Languages } from './components/Languages';
 import { Navigation } from './components/Navigation';
 
@@ -18,6 +17,9 @@ const Wrapper = styled.header`
   transition: padding ${({ theme }) => theme.transition.slow} ease;
   ${media.TABLET`
     padding: 50px 0;
+  `};
+  ${media.MOBILE`
+    padding: 30px 0;
   `};
 `;
 
@@ -58,23 +60,18 @@ const LogoWrapper = styled.div`
 
 const HeaderComponent = ({ appearance, className }) => {
   const { isCollapsedHeader } = useContext(CollapsedHeader);
+  const { isDesktop, isTablet } = useScreenSize();
 
   return (
     <Wrapper isCollapsedHeader={isCollapsedHeader} className={className}>
       <LogoWrapper>
         <Logo name="logo" width={94} height={16} />
         <Counter />
-        <Media
-          queryExpression={QUERY_EXPRESSIONS.TABLET}
-          replacedBlock={<Slogan>Skills in 15 minutes</Slogan>}
-        />
+        {(isTablet || isDesktop) && <Slogan>Skills in 15 minutes</Slogan>}
       </LogoWrapper>
       {appearance === HEADER_APPEARANCE.WITH_NAVIGATION && (
         <>
-          <Media
-            queryExpression={QUERY_EXPRESSIONS.TABLET}
-            replacedBlock={<Navigation />}
-          />
+          {(isTablet || isDesktop) && <Navigation />}
           <Languages />
         </>
       )}

@@ -7,6 +7,9 @@ const Title = styled.h1`
   font-size: ${({ theme }) => theme.fonts.size.xl};
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
   line-height: ${({ theme }) => theme.fonts.lineHeight.xl};
+  ${media.MOBILE`
+    font-size: ${({ theme }) => theme.fonts.size.xlMobile};
+  `}
 `;
 
 const SubTitle = styled.h2`
@@ -31,6 +34,9 @@ const Footer = styled.footer`
   );
   ${media.TABLET`
     padding: 50px
+  `}
+  ${media.MOBILE`
+    padding: 40px 25px;
   `}
 `;
 

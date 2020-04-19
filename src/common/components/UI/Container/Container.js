@@ -9,6 +9,9 @@ const Wrapper = styled.div`
   ${media.TABLET`
     max-width: calc(100% - 100px);
   `}
+  ${media.MOBILE`
+    max-width: calc(100% - 50px);
+  `}
 `;
 
 const ContainerComponent = ({

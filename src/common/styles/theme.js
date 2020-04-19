@@ -17,6 +17,7 @@ export const theme = {
       s: '15px',
       m: '20px',
       l: '22px',
+      xlMobile: '34px',
       xl: '41px',
       xxl: '80px',
     },

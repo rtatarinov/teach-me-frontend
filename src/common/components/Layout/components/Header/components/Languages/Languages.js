@@ -5,7 +5,9 @@ import { opacify } from 'polished';
 import { media } from '@styles/utils';
 import { Content } from '@components/UI/Content';
 import { Alert } from '@components/UI/Alert';
+import { Button } from '@components/UI/Button';
 import { resetButtonStyle, addHoverOpacity } from '@styles/placeholders';
+import { useScreenSize } from '@hooks/useScreenSize';
 import { LanguagesItem } from './components';
 import { languages } from './constants';
 
@@ -47,6 +49,10 @@ const LanguagesListWrapper = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.m};
   box-shadow: ${({ theme }) =>
     `0 11px 35px ${opacify(-0.95, theme.colors.black)}`};
+  ${media.MOBILE`
+    right: 0;
+    width: calc(100vw - 50px);
+  `}
 `;
 
 const SubTitle = styled(Content.SubTitle)`
@@ -84,11 +90,22 @@ const LanguagesValue = styled.button`
   ${addHoverOpacity};
 `;
 
+const StyledButton = styled(Button)`
+  padding: 12px 23px;
+  margin-top: 10px;
+  margin-left: 16px;
+
+  ${Button.Children} {
+    font-size: ${({ theme }) => theme.fonts.size.s};
+  }
+`;
+
 export const Languages = () => {
   const [isShownAlert, setIsShownAlert] = useState(false);
   const [selectedOptions, { push, remove }] = useList([languages[0]]);
   const [isOpenedSelect, setIsOpenedSelect] = useState(false);
   const languagesRef = useRef(null);
+  const { isMobile } = useScreenSize();
 
   const hideSelect = () => {
     setIsOpenedSelect(false);
@@ -134,7 +151,7 @@ export const Languages = () => {
         You need to select at least one language
       </Alert>
       <LanguagesWrapper>
-        <LanguagesTitle>My language is</LanguagesTitle>
+        {!isMobile && <LanguagesTitle>My language is</LanguagesTitle>}
         <LanguagesValue
           type="button"
           isOpened={isOpenedSelect}
@@ -154,6 +171,11 @@ export const Languages = () => {
               onChange={handleLanguageChange}
             />
           ))}
+          {isMobile && (
+            <StyledButton onClick={hideSelect} withoutOutline>
+              Apply
+            </StyledButton>
+          )}
         </LanguagesListWrapper>
       )}
     </Wrapper>

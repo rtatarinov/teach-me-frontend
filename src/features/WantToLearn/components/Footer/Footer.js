@@ -4,6 +4,7 @@ import { isEmpty } from '@utils/isEmpty';
 import { Content } from '@components/UI/Content';
 import { Button } from '@components/UI/Button';
 import { ROUTES } from '@common/constants';
+import { media } from '@styles/utils';
 
 const Warning = styled.div`
   margin-right: auto;
@@ -12,6 +13,11 @@ const Warning = styled.div`
   color: ${({ theme }) => theme.colors.orange};
   opacity: ${({ isTransparent }) => (isTransparent ? 0 : 1)};
   transition: ${({ theme }) => theme.transition.fast};
+  ${media.MOBILE`
+    max-width: calc(100% - 125px);
+    margin-right: 0;
+    margin-left: 12px;
+  `}
 `;
 
 const StyledButton = styled(Button)`

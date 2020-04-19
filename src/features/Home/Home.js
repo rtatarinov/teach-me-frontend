@@ -6,13 +6,14 @@ import { opacify } from 'polished';
 import { history } from '@src/history';
 import { ROUTES } from '@common/constants';
 import { Icon } from '@components/UI/Icon';
+import { useScreenSize } from '@hooks/useScreenSize';
 import { SkillCounter } from '@components/UI/SkillCounter';
+import { media } from '@styles/utils';
 
 const Wrapper = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   height: 100vh;
   color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
@@ -28,10 +29,16 @@ const Logo = styled(Icon)`
   margin-bottom: 32px;
   font-size: ${({ theme }) => theme.fonts.size.xxl};
   color: ${({ theme }) => theme.colors.purple};
+  ${media.MOBILE`
+    margin-bottom: 13px;
+  `}
 `;
 
 const Description = styled.div`
   font-size: ${({ theme }) => theme.fonts.size.l};
+  ${media.MOBILE`
+    font-size: ${({ theme }) => theme.fonts.size.s};
+  `}
 `;
 
 const Counter = styled(SkillCounter)`
@@ -40,6 +47,10 @@ const Counter = styled(SkillCounter)`
   right: -127px;
   font-size: ${({ theme }) => theme.fonts.size.l};
   font-weight: ${({ theme }) => theme.fonts.weight.bold};
+  ${media.MOBILE`
+    position: static;
+    margin-bottom: 35px;
+  `}
 
   & > img {
     width: 48px;
@@ -68,11 +79,19 @@ const Counter = styled(SkillCounter)`
     height: 25px;
     background-color: ${({ theme }) => opacify(-0.7, theme.colors.orange)};
   }
+
+  ${media.MOBILE`
+    &::before,
+    &::after {
+      content: none;
+    }
+  `};
 `;
 
 const TIME_OF_DISPLAY_PAGE = 2000;
 
 export const Home = () => {
+  const { isMobile } = useScreenSize();
   const delayDisplayPage = () => {
     setTimeout(() => {
       history.push(ROUTES.ABOUT_PROJECT);
@@ -91,7 +110,11 @@ export const Home = () => {
     <Wrapper to={ROUTES.ABOUT_PROJECT}>
       <Presentation>
         <Counter />
-        <Logo name="logo" width={392} height={66} />
+        <Logo
+          name="logo"
+          width={isMobile ? 210 : 392}
+          height={isMobile ? 35 : 66}
+        />
         <Description>+ 1 skill in 15 minutes</Description>
       </Presentation>
     </Wrapper>
