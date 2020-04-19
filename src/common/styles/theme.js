@@ -4,6 +4,7 @@ export const theme = {
   colors: {
     white: '#fff',
     black: '#000',
+    gray: '#dadada',
     purple: '#655eb0',
     orange: '#f89a42',
     green: '#34c759',
@@ -16,6 +17,7 @@ export const theme = {
       s: '15px',
       m: '20px',
       l: '22px',
+      xlMobile: '34px',
       xl: '41px',
       xxl: '80px',
     },
@@ -28,6 +30,7 @@ export const theme = {
     },
     lineHeight: {
       m: 1.5,
+      s: '25px',
       l: '37px',
       xl: '48px',
     },
@@ -42,6 +45,7 @@ export const theme = {
   },
   borderRadius: {
     default: '16px',
+    xs: '4px',
     s: '6px',
     xm: '9px',
     m: '14px',
@@ -53,6 +57,7 @@ export const theme = {
     languagesList: 2,
     rocket: 2,
     astronaut: 3,
+    alert: 4,
   },
   containerWidth: {
     [CONTAINER_TYPES.DEFAULT]: `calc(100% - 140px)`,

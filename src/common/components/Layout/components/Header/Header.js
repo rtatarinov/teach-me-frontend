@@ -1,10 +1,13 @@
 import React, { memo, useContext } from 'react';
 import styled from 'styled-components';
-import { Icon } from '@components/UI/Icon';
-import { SkillCounter } from '@components/UI/SkillCounter';
 import { HEADER_APPEARANCE } from '@common/constants';
 import { CollapsedHeader } from '@context/collapsedHeader';
+import { Icon } from '@components/UI/Icon';
+import { SkillCounter } from '@components/UI/SkillCounter';
+import { media } from '@styles/utils';
+import { useScreenSize } from '@hooks/useScreenSize';
 import { Languages } from './components/Languages';
+import { Navigation } from './components/Navigation';
 
 const Wrapper = styled.header`
   display: flex;
@@ -12,16 +15,18 @@ const Wrapper = styled.header`
   padding: ${({ isCollapsedHeader }) =>
     isCollapsedHeader ? '40px 0' : '71px 0'};
   transition: padding ${({ theme }) => theme.transition.slow} ease;
+  ${media.TABLET`
+    padding: 50px 0;
+  `};
+  ${media.MOBILE`
+    padding: 30px 0;
+  `};
 `;
 
 const Counter = styled(SkillCounter)`
-  position: relative;
-  top: 1px;
-  padding: 6px 8px;
+  width: 22px;
+  height: 24px;
   margin-right: 11px;
-  font-size: ${({ theme }) => theme.fonts.size.xs};
-  font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
-  border-radius: ${({ theme }) => theme.borderRadius.s};
 `;
 
 const Slogan = styled.div`
@@ -40,6 +45,7 @@ const Logo = styled(Icon)`
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-right: auto;
 
   &:hover {
     ${Slogan} {
@@ -54,15 +60,21 @@ const LogoWrapper = styled.div`
 
 const HeaderComponent = ({ appearance, className }) => {
   const { isCollapsedHeader } = useContext(CollapsedHeader);
+  const { isDesktop, isTablet } = useScreenSize();
 
   return (
     <Wrapper isCollapsedHeader={isCollapsedHeader} className={className}>
       <LogoWrapper>
         <Logo name="logo" width={94} height={16} />
-        <Counter>+1</Counter>
-        <Slogan>Skills in 15 minutes</Slogan>
+        <Counter />
+        {(isTablet || isDesktop) && <Slogan>Skills in 15 minutes</Slogan>}
       </LogoWrapper>
-      {appearance === HEADER_APPEARANCE.WITH_LANGUAGES && <Languages />}
+      {appearance === HEADER_APPEARANCE.WITH_NAVIGATION && (
+        <>
+          {(isTablet || isDesktop) && <Navigation />}
+          <Languages />
+        </>
+      )}
     </Wrapper>
   );
 };

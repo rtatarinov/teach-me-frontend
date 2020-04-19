@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { Button } from '@components/UI/Button';
+import { useScreenSize } from '@hooks/useScreenSize';
+import { Timer } from '@components/Timer';
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,26 +17,32 @@ const TextWrapper = styled.div`
 
 const AcceptButton = styled(Button)`
   margin-left: 70px;
+`;
 
-  ${Button.Children} {
-    min-width: 138px;
-  }
+const StyledTimer = styled(Timer)`
+  margin-left: 7px;
+  opacity: 0.75;
 `;
 
 const InvitationComponent = () => {
+  const { isMobile } = useScreenSize();
   const handleClickAcceptButton = () => {};
+  const handleExpire = () => {};
 
   return (
     <Wrapper>
-      <TextWrapper>
-        If the conversation partner does not connect, restart the search
-      </TextWrapper>
+      {!isMobile && (
+        <TextWrapper>
+          If the conversation partner does not connect, restart the search
+        </TextWrapper>
+      )}
       <AcceptButton
         bgColor="green"
         color="white"
         onClick={handleClickAcceptButton}
       >
         Accept
+        <StyledTimer onExpire={handleExpire} withAutoStart />
       </AcceptButton>
     </Wrapper>
   );

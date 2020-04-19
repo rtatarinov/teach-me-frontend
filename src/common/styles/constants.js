@@ -12,3 +12,8 @@ export const ICON_POSITION = {
   PREFIX: 'prefix',
   POSTFIX: 'postfix',
 };
+
+export const QUERIES = {
+  TABLET: 1024,
+  MOBILE: 767,
+};

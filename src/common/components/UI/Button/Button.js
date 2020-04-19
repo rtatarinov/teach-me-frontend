@@ -6,6 +6,7 @@ import { BUTTON_APPEARANCE, ICON_POSITION } from '@styles/constants';
 import { resetButtonStyle } from '@styles/placeholders';
 import { Icon } from '@components/UI/Icon';
 import { styles, getCommonStyles } from './styles';
+import { media } from '@styles/utils';
 
 const Wrapper = styled.button`
   ${resetButtonStyle};
@@ -36,9 +37,13 @@ const StyledLink = styled.div`
 
 const ButtonChildren = styled.span`
   display: block;
+  min-width: 138px;
   font-size: ${({ theme }) => theme.fonts.size.m};
   font-weight: ${({ theme }) => theme.fonts.weight.bigMedium};
   color: inherit;
+  ${media.MOBILE`
+    min-width: 120px;
+  `}
 `;
 
 const ButtonIcon = styled(Icon)`
@@ -46,7 +51,6 @@ const ButtonIcon = styled(Icon)`
 `;
 
 const LinkComponent = ({
-  className,
   to,
   withoutOutline,
   children,
@@ -58,14 +62,15 @@ const LinkComponent = ({
   iconHeight,
   iconPosition,
   onClick,
+  className,
 }) => (
   <StyledLink
-    className={className}
     withoutOutline={withoutOutline}
     appearance={appearance}
     bgColor={bgColor}
     color={color}
     icon={icon}
+    className={className}
   >
     <Link to={to} onClick={onClick}>
       {icon && iconPosition === ICON_POSITION.PREFIX && (

@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { useTitle } from 'react-use';
 import { PROJECT_NAME, ROUTES } from '@common/constants';
 import { Container } from '@components/UI/Container';
-import { Header } from '@components/UI/Layout/components/Header';
+import { Header } from '@components/Layout/components/Header';
 import { Button } from '@components/UI/Button';
 
 const rocketMovement = keyframes`

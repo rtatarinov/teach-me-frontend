@@ -10,6 +10,7 @@ const SelectComponent = ({
   menuIsOpen,
   placeholder,
   onChange,
+  isMulti,
 }) => (
   <Select
     defaultValue={defaultValue}
@@ -19,6 +20,7 @@ const SelectComponent = ({
     menuIsOpen={menuIsOpen}
     placeholder={placeholder}
     onChange={onChange}
+    isMulti={isMulti}
   />
 );
 

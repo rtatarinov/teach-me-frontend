@@ -5,22 +5,20 @@ import { Content } from '@components/UI/Content';
 import { Button } from '@components/UI/Button';
 import { ICON_POSITION } from '@styles/constants';
 import { ROUTES, REQUEST_STATUS } from '@common/constants';
+import { media } from '@styles/utils';
 import { SearchBlock } from './components/SearchBlock';
 import { Invitation } from './components/Invitation';
 
 const BackButton = styled(Button)`
   ${Button.Children} {
     font-size: ${({ theme }) => theme.fonts.size.s};
+    ${media.MOBILE`
+      min-width: 0;
+    `}
   }
 
   ${Button.Icon} {
     margin-right: 7px;
-  }
-`;
-
-const StartButton = styled(Button)`
-  ${Button.Children} {
-    min-width: 138px;
   }
 `;
 
@@ -51,14 +49,14 @@ export const Footer = ({ selectedTags = [] }) => {
       )}
       {requestStatus === REQUEST_STATUS.SUCCESS && <Invitation />}
       {requestStatus === REQUEST_STATUS.READY && (
-        <StartButton
+        <Button
           bgColor="purple"
           color="white"
           disabled={!hasSelectedTags}
           onClick={handleClickStartButton}
         >
           Start
-        </StartButton>
+        </Button>
       )}
     </Content.Footer>
   );
