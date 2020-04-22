@@ -52,6 +52,7 @@ const ButtonIcon = styled(Icon)`
 
 const LinkComponent = ({
   to,
+  href,
   withoutOutline,
   children,
   appearance,
@@ -72,15 +73,28 @@ const LinkComponent = ({
     icon={icon}
     className={className}
   >
-    <Link to={to} onClick={onClick}>
-      {icon && iconPosition === ICON_POSITION.PREFIX && (
-        <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
-      )}
-      {children}
-      {icon && iconPosition === ICON_POSITION.POSTFIX && (
-        <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
-      )}
-    </Link>
+    {to && (
+      <Link to={to} onClick={onClick}>
+        {icon && iconPosition === ICON_POSITION.PREFIX && (
+          <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
+        )}
+        {children}
+        {icon && iconPosition === ICON_POSITION.POSTFIX && (
+          <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
+        )}
+      </Link>
+    )}
+    {href && (
+      <a href={href}>
+        {icon && iconPosition === ICON_POSITION.PREFIX && (
+          <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
+        )}
+        {children}
+        {icon && iconPosition === ICON_POSITION.POSTFIX && (
+          <ButtonIcon name={icon} width={iconWidth} height={iconHeight} />
+        )}
+      </a>
+    )}
   </StyledLink>
 );
 
@@ -89,6 +103,7 @@ const ButtonComponent = ({
   children,
   withoutOutline,
   to,
+  href,
   className,
   appearance = BUTTON_APPEARANCE.BIG,
   bgColor = 'purple',
@@ -101,9 +116,10 @@ const ButtonComponent = ({
   onClick = Function.prototype,
 }) => (
   <>
-    {to ? (
+    {to || href ? (
       <LinkComponent
         to={to}
+        href={href}
         className={className}
         withoutOutline={withoutOutline}
         appearance={appearance}

@@ -3,10 +3,10 @@ import { AboutProject } from '@features/AboutProject';
 import { useTitle } from 'react-use';
 import { PROJECT_NAME } from '@common/constants';
 
-const AboutProjectPage = () => {
+const SignInPage = () => {
   useTitle(`About project - ${PROJECT_NAME}`);
 
   return <AboutProject />;
 };
 
-export default memo(AboutProjectPage);
+export default memo(SignInPage);

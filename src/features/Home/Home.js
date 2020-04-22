@@ -94,7 +94,7 @@ export const Home = () => {
   const { isMobile } = useScreenSize();
   const delayDisplayPage = () => {
     setTimeout(() => {
-      history.push(ROUTES.ABOUT_PROJECT);
+      history.push(ROUTES.SIGN_IN);
     }, TIME_OF_DISPLAY_PAGE);
   };
 
@@ -107,7 +107,7 @@ export const Home = () => {
   });
 
   return (
-    <Wrapper to={ROUTES.ABOUT_PROJECT}>
+    <Wrapper to={ROUTES.SIGN_IN}>
       <Presentation>
         <Counter />
         <Logo
