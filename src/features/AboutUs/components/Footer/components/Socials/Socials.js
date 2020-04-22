@@ -43,7 +43,7 @@ export const Socials = () => (
   <Wrapper>
     <Title>Follow us</Title>
     {socialsList.map(({ icon, link }) => (
-      <Item key={icon} icon={icon} link={link} />
+      <Item key={icon} icon={icon} link={link} target="_blank" />
     ))}
   </Wrapper>
 );

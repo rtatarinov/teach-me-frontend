@@ -5,6 +5,7 @@ const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
+const Dotenv = require('dotenv-webpack');
 const bp = require('./utils/addBabelPolyfill');
 
 const rootDir = join(__dirname, '../');
@@ -54,6 +55,10 @@ module.exports = {
       template: join(rootDir, './static/index.html'),
     }),
     new Visualizer(),
+    new Dotenv({
+      safe: true,
+      path: join(rootDir, './.env'),
+    }),
   ],
   optimization: {
     runtimeChunk: 'single',
