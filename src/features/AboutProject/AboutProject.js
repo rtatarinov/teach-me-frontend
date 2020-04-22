@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Layout } from '@components/Layout';
-import { Button } from '@components/UI/Button';
-import { ROUTES } from '@common/constants';
 import { useScreenSize } from '@hooks/useScreenSize';
+import { SignIn } from '@features/Auth/SignIn';
 
 const styles = `
   display: flex;
@@ -42,7 +41,7 @@ const Content = () => (
       &ldquo;Teach me&rdquo; is a project that brings people together. The main
       goal is to teach the interlocutor one skill.
     </Description>
-    <Button to={ROUTES.WANT_LEARN}>Next</Button>
+    <SignIn />
   </>
 );
 

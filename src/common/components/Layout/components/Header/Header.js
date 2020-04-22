@@ -60,18 +60,18 @@ const LogoWrapper = styled.div`
 
 const HeaderComponent = ({ appearance, className }) => {
   const { isCollapsedHeader } = useContext(CollapsedHeader);
-  const { isDesktop, isTablet } = useScreenSize();
+  const { notMobile } = useScreenSize();
 
   return (
     <Wrapper isCollapsedHeader={isCollapsedHeader} className={className}>
       <LogoWrapper>
         <Logo name="logo" width={94} height={16} />
         <Counter />
-        {(isTablet || isDesktop) && <Slogan>Skills in 15 minutes</Slogan>}
+        {notMobile && <Slogan>Skills in 15 minutes</Slogan>}
       </LogoWrapper>
       {appearance === HEADER_APPEARANCE.WITH_NAVIGATION && (
         <>
-          {(isTablet || isDesktop) && <Navigation />}
+          {notMobile && <Navigation />}
           <Languages />
         </>
       )}
