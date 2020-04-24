@@ -1,1 +1,0 @@
-export { CanTeach } from './CanTeach';
