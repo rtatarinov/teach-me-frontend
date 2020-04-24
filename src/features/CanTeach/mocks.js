@@ -1,0 +1,18 @@
+export const mocks = [
+  { id: 1, title: `Don't be alone`, isActive: true },
+  { id: 2, title: `To play guitar`, isActive: true },
+  { id: 3, title: `Draw` },
+  { id: 4, title: `Learn English` },
+  { id: 5, title: `Be more productive` },
+  { id: 6, title: `To meditate` },
+  { id: 7, title: `Be more productive` },
+  { id: 8, title: `To meditate` },
+  { id: 9, title: `Learn spanish` },
+  { id: 10, title: `Learn English` },
+  { id: 11, title: `Public speaking` },
+  { id: 12, title: `To meditate` },
+  { id: 13, title: `To program` },
+  { id: 14, title: `Write` },
+  { id: 15, title: `To program` },
+  { id: 16, title: `Write` },
+];
