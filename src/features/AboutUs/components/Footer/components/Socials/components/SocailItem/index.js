@@ -1,1 +1,0 @@
-export { SocialItem } from './SocialItem';

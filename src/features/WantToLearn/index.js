@@ -1,1 +1,0 @@
-export { WantToLearn } from './WantToLearn';
