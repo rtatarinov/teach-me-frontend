@@ -3,7 +3,7 @@ import { useEffectOnce } from 'react-use';
 import { withRouter, Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 import { ROUTES } from '@common/constants';
-import { PrivateRoute } from '@components/PrivateRoute';
+// import { PrivateRoute } from '@components/PrivateRoute';
 import { Loader } from '@components/UI/Loader';
 import { history } from '@src/history';
 

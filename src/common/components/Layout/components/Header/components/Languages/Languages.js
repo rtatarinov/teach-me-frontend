@@ -1,5 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { useClickAway, useList, useKeyPressEvent } from 'react-use';
+import {
+  useClickAway,
+  useList,
+  useKeyPressEvent,
+  useUpdateEffect,
+} from 'react-use';
 import styled from 'styled-components';
 import { opacify } from 'polished';
 import { media } from '@styles/utils';
@@ -8,6 +13,7 @@ import { Alert } from '@components/UI/Alert';
 import { Button } from '@components/UI/Button';
 import { resetButtonStyle, addHoverOpacity } from '@styles/placeholders';
 import { useScreenSize } from '@hooks/useScreenSize';
+import { getInitialLocale, setAppLanguage } from '@utils/locale';
 import { LanguagesItem } from './components';
 import { languages } from './constants';
 
@@ -101,8 +107,9 @@ const StyledButton = styled(Button)`
 `;
 
 export const Languages = () => {
+  const selectedLanguages = getInitialLocale(languages);
   const [isShownAlert, setIsShownAlert] = useState(false);
-  const [selectedOptions, { push, remove }] = useList([languages[0]]);
+  const [selectedOptions, { push, remove }] = useList(selectedLanguages);
   const [isOpenedSelect, setIsOpenedSelect] = useState(false);
   const languagesRef = useRef(null);
   const { isMobile } = useScreenSize();
@@ -144,6 +151,10 @@ export const Languages = () => {
       hideSelect();
     }
   });
+
+  useUpdateEffect(() => {
+    setAppLanguage(selectedOptions);
+  }, [selectedOptions]);
 
   return (
     <Wrapper ref={languagesRef}>

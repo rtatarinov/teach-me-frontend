@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 export const PROJECT_NAME = 'Teach me';
 export const { API_URL } = window.__TEACH_ME_CONFIG__;
 export const { ZOOM_CLIENT_ID } = window.__TEACH_ME_CONFIG__;

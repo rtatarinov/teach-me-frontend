@@ -24,7 +24,11 @@ const Wrapper = styled(Layout)`
 
 const Title = () => (
   <Content.Title>
-    I can teach<span role="img"> </span>‍‍🎓
+    I can teach
+    <span role="img" aria-label="emoji about teaching">
+      {' '}
+    </span>
+    ‍‍🎓
   </Content.Title>
 );
 

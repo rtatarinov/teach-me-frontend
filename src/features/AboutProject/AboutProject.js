@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Layout } from '@components/Layout';
 import { useScreenSize } from '@hooks/useScreenSize';
 import { SignIn } from '@features/Auth/SignIn';
+import { media } from '@styles/utils';
 
 const styles = `
   display: flex;
@@ -15,7 +16,8 @@ const styles = `
 
 const MobileWrapper = styled.div`
   ${styles};
-  min-height: 100vh;
+  height: 100vh;
+  padding: 0 25px;
 `;
 
 const Wrapper = styled(Layout)`
@@ -25,6 +27,9 @@ const Wrapper = styled(Layout)`
 
 const SupermanImg = styled.img`
   margin-bottom: 30px;
+  ${media.MOBILE`
+    margin-bottom: 20px;
+  `}
 `;
 
 const Description = styled.p`
@@ -32,6 +37,9 @@ const Description = styled.p`
   margin: 0 auto 62px;
   font-size: ${({ theme }) => theme.fonts.size.l};
   line-height: ${({ theme }) => theme.fonts.lineHeight.l};
+  ${media.MOBILE`
+    margin-bottom: 40px;
+  `}
 `;
 
 const Content = () => (

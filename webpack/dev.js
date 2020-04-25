@@ -23,11 +23,11 @@ const devConfig = {
     hot: true,
     historyApiFallback: true,
     disableHostCheck: true,
-    before: function(app) {
-      app.get('/env.js', function(req, res) {
+    before: function (app) {
+      app.get('/env.js', function (req, res) {
         res.set('Content-Type', 'application/javascript; charset=utf-8');
         res.send(
-          `window.__TEACH_ME_CONFIG__ = ${JSON.stringify(require('../env'))};`,
+          `window.__TEACH_ME_CONFIG__ = ${JSON.stringify(require('../env'))};`
         );
       });
     },
