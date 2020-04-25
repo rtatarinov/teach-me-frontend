@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useUpdateEffect } from 'react-use';
 import { isEmpty } from '@utils/isEmpty';
 import { Content } from '@components/UI/Content';
 import { Button } from '@components/UI/Button';
@@ -31,6 +32,10 @@ export const Footer = ({ selectedTags = [] }) => {
   const handleClickStartButton = () => {
     setRequestStatus(REQUEST_STATUS.SENT);
   };
+
+  useUpdateEffect(() => {
+    setRequestStatus(hasSelectedTags ? REQUEST_STATUS.READY : null);
+  }, [hasSelectedTags]);
 
   return (
     <Content.Footer>
