@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'polished';
+import { media } from '@styles/utils';
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize};
@@ -25,7 +26,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    min-height: 100vh;
+    height: 100vh;
+    ${media.MOBILE`
+      height: calc(100vh - 60px);
+    `}
   }
 
   img {

@@ -10,7 +10,6 @@ COPY --from=build /app/server.js .
 COPY --from=build /app/env.js .
 ENV NODE_ENV=production
 RUN yarn add fastify && yarn add fastify-static
-RUN ls -lah
 
 EXPOSE 80
 CMD ["node", "server.js"]
