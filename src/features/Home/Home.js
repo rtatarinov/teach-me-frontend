@@ -14,7 +14,7 @@ const Wrapper = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
 `;

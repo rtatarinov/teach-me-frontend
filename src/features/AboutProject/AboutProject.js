@@ -10,19 +10,21 @@ const styles = `
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
   text-align: center;
 `;
 
 const MobileWrapper = styled.div`
   ${styles};
-  height: 100vh;
+  height: 100%;
   padding: 0 25px;
 `;
 
 const Wrapper = styled(Layout)`
   padding-bottom: 165px;
   ${styles};
+  ${media.MOBILE`
+   padding-bottom: 0;
+  `}
 `;
 
 const SupermanImg = styled.img`

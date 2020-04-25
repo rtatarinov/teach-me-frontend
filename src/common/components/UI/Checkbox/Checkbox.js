@@ -44,10 +44,11 @@ const Input = styled.input`
   position: absolute;
   top: 0;
   left: 0;
-  appearance: none;
   width: 100%;
   height: 100%;
   cursor: pointer;
+  opacity: 0;
+  appearance: none;
 
   &:focus {
     outline: transparent;

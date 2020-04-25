@@ -6,7 +6,7 @@ export const useScreenSize = () => {
   const isTablet = width > QUERIES.MOBILE && width <= QUERIES.TABLET;
   const isMobile = width <= QUERIES.MOBILE;
   const isDesktop = width > QUERIES.TABLET;
-  const notMobile = isMobile || isDesktop;
+  const notMobile = isTablet || isDesktop;
 
   return { isTablet, isMobile, isDesktop, notMobile };
 };

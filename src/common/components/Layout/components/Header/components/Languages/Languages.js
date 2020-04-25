@@ -46,12 +46,13 @@ const LanguagesTitle = styled.span`
 
 const LanguagesListWrapper = styled.div`
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + 10px);
   right: -15px;
   width: 342px;
   padding-top: 24px;
   padding-bottom: 8px;
   background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => opacify(-0.94, theme.colors.black)};
   border-radius: ${({ theme }) => theme.borderRadius.m};
   box-shadow: ${({ theme }) =>
     `0 11px 35px ${opacify(-0.95, theme.colors.black)}`};
@@ -104,6 +105,12 @@ const StyledButton = styled(Button)`
   ${Button.Children} {
     font-size: ${({ theme }) => theme.fonts.size.s};
   }
+`;
+
+const ApplyButtonWrapper = styled.div`
+  padding-right: 24px;
+  margin-top: 20px;
+  text-align: right;
 `;
 
 export const Languages = () => {
@@ -183,9 +190,11 @@ export const Languages = () => {
             />
           ))}
           {isMobile && (
-            <StyledButton onClick={hideSelect} withoutOutline>
-              Apply
-            </StyledButton>
+            <ApplyButtonWrapper>
+              <StyledButton onClick={hideSelect} withoutOutline>
+                Apply
+              </StyledButton>
+            </ApplyButtonWrapper>
           )}
         </LanguagesListWrapper>
       )}
