@@ -15,7 +15,10 @@ export const AboutUs = () => (
   <Layout headerAppearance={HEADER_APPEARANCE.WITH_NAVIGATION}>
     <ListWrapper>
       <Title>
-        Team <span role="img">😎</span>
+        Team{' '}
+        <span role="img" aria-label="emoji about team">
+          😎
+        </span>
       </Title>
       <Team />
     </ListWrapper>

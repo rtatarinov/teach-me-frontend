@@ -12,7 +12,7 @@ fastify.get('/', function (req, reply) {
   reply.sendFile('index.html', path.join(__dirname, 'build'));
 });
 
-fastify.get('/env.js', function(req, reply) {
+fastify.get('/env.js', function (req, reply) {
   reply
     .header('Content-Type', 'application/javascript; charset=utf-8')
     .send(`window.__TEACH_ME_CONFIG__ = ${JSON.stringify(require('./env'))};`);
