@@ -8,6 +8,7 @@ WORKDIR /app
 COPY --from=build /app/build ./build
 COPY --from=build /app/server.js .
 COPY --from=build /app/env.js .
+COPY --from=build /app/ssl .
 ENV NODE_ENV=production
 RUN yarn add fastify && yarn add fastify-static
 
