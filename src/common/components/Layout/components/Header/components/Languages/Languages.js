@@ -4,6 +4,7 @@ import {
   useList,
   useKeyPressEvent,
   useUpdateEffect,
+  useEffectOnce,
 } from 'react-use';
 import styled from 'styled-components';
 import { opacify } from 'polished';
@@ -13,9 +14,11 @@ import { Alert } from '@components/UI/Alert';
 import { Button } from '@components/UI/Button';
 import { resetButtonStyle, addHoverOpacity } from '@styles/placeholders';
 import { useScreenSize } from '@hooks/useScreenSize';
+import { useRequest } from '@hooks/useRequest';
 import { getInitialLocale, setAppLanguage } from '@utils/locale';
+import { Loader } from '@components/UI/Loader';
+import { Error } from '@components/UI/Error';
 import { LanguagesItem } from './components';
-import { languages } from './constants';
 
 const Wrapper = styled.div`
   position: relative;
@@ -113,13 +116,26 @@ const ApplyButtonWrapper = styled.div`
   text-align: right;
 `;
 
+const StyledLoader = styled(Loader)`
+  width: 18px;
+  height: 18px;
+`;
+
 export const Languages = () => {
-  const selectedLanguages = getInitialLocale(languages);
   const [isShownAlert, setIsShownAlert] = useState(false);
-  const [selectedOptions, { push, remove }] = useList(selectedLanguages);
+  const [selectedOptions, { push, remove, set }] = useList([]);
   const [isOpenedSelect, setIsOpenedSelect] = useState(false);
   const languagesRef = useRef(null);
   const { isMobile } = useScreenSize();
+  const [{ isLoading, error, data: languages }, getLanguages] = useRequest({
+    url: '/data/languages',
+    initialIsLoading: true,
+    onSuccess: (data) => {
+      const selectedLanguages = getInitialLocale(data);
+
+      set(selectedLanguages);
+    },
+  });
 
   const hideSelect = () => {
     setIsOpenedSelect(false);
@@ -132,7 +148,7 @@ export const Languages = () => {
   const handleLanguageChange = (language) => {
     const { value } = language;
     const indexOfElement = selectedOptions.findIndex(
-      (item) => item.value === value,
+      (item) => item.iso === value,
     );
 
     if (selectedOptions.length === 1 && indexOfElement !== -1) {
@@ -163,6 +179,18 @@ export const Languages = () => {
     setAppLanguage(selectedOptions);
   }, [selectedOptions]);
 
+  useEffectOnce(() => {
+    getLanguages();
+  });
+
+  if (isLoading) {
+    return <StyledLoader isStatic />;
+  }
+
+  if (error) {
+    return <Error>Error. Languages not available.</Error>;
+  }
+
   return (
     <Wrapper ref={languagesRef}>
       <Alert isShown={isShownAlert} setIsShown={setIsShownAlert}>
@@ -183,7 +211,7 @@ export const Languages = () => {
           <SubTitle>Choose language</SubTitle>
           {languages.map((item) => (
             <LanguagesItem
-              key={item.value}
+              key={item.iso}
               language={item}
               isSelected={selectedOptions.includes(item)}
               onChange={handleLanguageChange}

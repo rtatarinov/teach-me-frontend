@@ -1,6 +1,6 @@
 const findLanguage = (value, languages) => {
   const appLanguagesList = value.split(',');
-  const result = languages.filter(({ value: languageCode }) =>
+  const result = languages.filter(({ iso: languageCode }) =>
     appLanguagesList.includes(languageCode),
   );
 
@@ -15,7 +15,7 @@ export const getAppLanguage = () => localStorage.getItem('selectedLanguages');
 export const setAppLanguage = (selectedLanguages) =>
   localStorage.setItem(
     'selectedLanguages',
-    selectedLanguages.map((item) => item.value).join(','),
+    selectedLanguages.map((item) => item.iso).join(','),
   );
 
 export const getInitialLocale = (languagesList) => {
