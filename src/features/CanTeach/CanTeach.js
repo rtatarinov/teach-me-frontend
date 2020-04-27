@@ -16,7 +16,6 @@ import { useRequest } from '@hooks/useRequest';
 import { isEmpty } from '@utils/isEmpty';
 import { HEADER_APPEARANCE } from '@common/constants';
 import { Footer } from './components/Footer';
-import { mocks } from './mocks';
 
 const Wrapper = styled(Layout)`
   height: 100%;
@@ -40,9 +39,8 @@ const Container = ({ children }) => (
 
 export const CanTeach = () => {
   const [{ isLoading, error, data: tags }, getTags] = useRequest({
-    url: '#',
+    url: '/data/skills',
     initialIsLoading: true,
-    mocks,
   });
 
   const [savedSelectedTags, setSavedSelectedTags] = useLocalStorage(
