@@ -2,10 +2,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '@common/constants';
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 const defaultConfig = {
   url: '',
   method: 'get',
@@ -26,7 +22,6 @@ export const useRequest = (config) => {
     onSuccess,
     onError,
     withCredentials,
-    mocks,
   } = settings;
 
   const [isLoading, setIsLoading] = useState(initialIsLoading);
@@ -61,12 +56,6 @@ export const useRequest = (config) => {
   const request = async (payload, options) => {
     try {
       setIsLoading(true);
-
-      if (mocks) {
-        await sleep(1000);
-        handleSuccessRequest(mocks);
-        return;
-      }
 
       let requestConfig = {
         baseURL,

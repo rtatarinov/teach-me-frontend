@@ -16,7 +16,6 @@ import { List } from '@components/List';
 import { useRequest } from '@hooks/useRequest';
 import { isEmpty } from '@utils/isEmpty';
 import { Footer } from './components/Footer';
-import { mocks } from './mocks';
 
 const Wrapper = styled(Layout)`
   height: 100%;
@@ -41,9 +40,8 @@ const Container = ({ children }) => (
 export const WantToLearn = () => {
   const [isShownWarning, setIsShownWarning] = useState(false);
   const [{ isLoading, error, data: tags }, getTags] = useRequest({
-    url: '#',
+    url: '/data/skills',
     initialIsLoading: true,
-    mocks,
   });
 
   const [savedSelectedTags, setSavedSelectedTags] = useLocalStorage(
