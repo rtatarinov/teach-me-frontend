@@ -9,7 +9,7 @@ export const ROUTES = {
   HOME: '/',
   SIGN_IN: '/sign-in',
   LOGIN_AFTER_ZOOM: '/login',
-  ABOUT_US: '/about',
+  ABOUT: '/about',
   WANT_LEARN: '/want-learn',
   CAN_TEACH: '/can-teach',
 };

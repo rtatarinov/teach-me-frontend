@@ -19,14 +19,14 @@ const StyledCheckbox = styled(Checkbox)`
 export const List = ({ items, selectedItems, onChange, children }) => (
   <>
     <ListWrapper>
-      {items.map(({ id, title, isActive }) => (
+      {items.map(({ id, name, isActive }) => (
         <StyledCheckbox
           checked={selectedItems.includes(id)}
           onChange={() => onChange(id)}
           isActive={isActive}
           key={id}
         >
-          {title}
+          {name}
         </StyledCheckbox>
       ))}
     </ListWrapper>

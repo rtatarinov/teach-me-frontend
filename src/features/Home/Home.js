@@ -9,6 +9,7 @@ import { Icon } from '@components/UI/Icon';
 import { useScreenSize } from '@hooks/useScreenSize';
 import { SkillCounter } from '@components/UI/SkillCounter';
 import { media } from '@styles/utils';
+import { getToken } from '@utils/token';
 
 const Wrapper = styled(Link)`
   display: flex;
@@ -92,9 +93,11 @@ const TIME_OF_DISPLAY_PAGE = 2000;
 
 export const Home = () => {
   const { isMobile } = useScreenSize();
+  const token = getToken('token');
+
   const delayDisplayPage = () => {
     setTimeout(() => {
-      history.push(ROUTES.SIGN_IN);
+      history.push(token ? ROUTES.WANT_LEARN : ROUTES.SIGN_IN);
     }, TIME_OF_DISPLAY_PAGE);
   };
 
