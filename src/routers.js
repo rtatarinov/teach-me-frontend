@@ -3,7 +3,7 @@ import { useEffectOnce } from 'react-use';
 import { withRouter, Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 import { ROUTES } from '@common/constants';
-// import { PrivateRoute } from '@components/PrivateRoute';
+import { PrivateRoute } from '@components/PrivateRoute';
 import { Loader } from '@components/UI/Loader';
 import { history } from '@src/history';
 
@@ -33,11 +33,14 @@ const RoutesList = () => {
       <Switch>
         <Route exact path={ROUTES.HOME} component={HomePage} />
         <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
-        <Route exact path={ROUTES.ABOUT_US} component={AboutUsPage} />
-        {/* TODO Next to route change to private route */}
-        <Route exact path={ROUTES.WANT_LEARN} component={WantToLearnPage} />
-        <Route exact path={ROUTES.CAN_TEACH} component={CanTeachPage} />
+        <Route exact path={ROUTES.ABOUT} component={AboutUsPage} />
         <Route exact path={ROUTES.LOGIN_AFTER_ZOOM} component={LoginPage} />
+        <PrivateRoute
+          exact
+          path={ROUTES.WANT_LEARN}
+          component={WantToLearnPage}
+        />
+        <PrivateRoute exact path={ROUTES.CAN_TEACH} component={CanTeachPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </Suspense>
