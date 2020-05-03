@@ -7,7 +7,7 @@ export const SignIn = () => {
     <Button
       href={`https://zoom.us/oauth/authorize?response_type=code&client_id=${ZOOM_CLIENT_ID}&redirect_uri=${REDIRECT_URL_AFTER_ZOOM}`}
     >
-      Next
+      Login with zoom
     </Button>
   );
 };

@@ -6,7 +6,9 @@ import { Content } from '@components/UI/Content';
 import { Button } from '@components/UI/Button';
 import { ICON_POSITION } from '@styles/constants';
 import { ROUTES, REQUEST_STATUS } from '@common/constants';
+import { Alert } from '@components/UI/Alert';
 import { media } from '@styles/utils';
+import { useRequest } from '@hooks/useRequest';
 import { SearchBlock } from './components/SearchBlock';
 import { Invitation } from './components/Invitation';
 
@@ -28,9 +30,41 @@ export const Footer = ({ selectedTags = [] }) => {
   const [requestStatus, setRequestStatus] = useState(
     hasSelectedTags ? REQUEST_STATUS.READY : null,
   );
+  const [error, setError] = useState(null);
+
+  const wantToLearnTags = window.localStorage
+    .getItem('wantToLearnTags')
+    .slice(0, -1)
+    .substr(1)
+    .split(',')
+    .map((item) => Number(item));
+
+  const selectedLanguages = window.localStorage
+    .getItem('selectedLanguages')
+    .split(',');
+
+  const [{ isLoading }, createConference] = useRequest({
+    url: '/users',
+    method: 'post',
+    withCredentials: true,
+    onSuccess: () => {
+      setRequestStatus(REQUEST_STATUS.SENT);
+    },
+    onError: (errors) => {
+      setError(errors);
+    },
+  });
 
   const handleClickStartButton = () => {
-    setRequestStatus(REQUEST_STATUS.SENT);
+    const payload = {
+      body: {
+        alreadyKnow: selectedTags,
+        wantToKnow: wantToLearnTags,
+        lang: selectedLanguages,
+      },
+    };
+
+    createConference(payload);
   };
 
   useUpdateEffect(() => {
@@ -57,12 +91,15 @@ export const Footer = ({ selectedTags = [] }) => {
         <Button
           bgColor="purple"
           color="white"
-          disabled={!hasSelectedTags}
+          disabled={!hasSelectedTags || isLoading}
           onClick={handleClickStartButton}
         >
           Start
         </Button>
       )}
+      <Alert isShown={error} setIsShown={setError}>
+        Server error
+      </Alert>
     </Content.Footer>
   );
 };

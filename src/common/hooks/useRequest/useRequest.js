@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '@common/constants';
+import { getToken } from '@utils/token';
 
 const defaultConfig = {
   url: '',
@@ -27,6 +28,7 @@ export const useRequest = (config) => {
   const [isLoading, setIsLoading] = useState(initialIsLoading);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const token = getToken();
 
   const handleSuccessRequest = (serverData) => {
     setIsLoading(false);
@@ -70,6 +72,10 @@ export const useRequest = (config) => {
 
       if (options) {
         requestConfig = { ...requestConfig, ...options };
+      }
+
+      if (withCredentials && token) {
+        axios.defaults.headers.Authorization = `Bearer ${token}`;
       }
 
       const { data: serverData } = await axios(requestConfig);

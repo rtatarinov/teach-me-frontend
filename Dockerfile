@@ -12,5 +12,5 @@ COPY --from=build /app/ssl .
 ENV NODE_ENV=production
 RUN yarn add fastify && yarn add fastify-static
 
-EXPOSE 80
+EXPOSE 80 443
 CMD ["node", "server.js"]
