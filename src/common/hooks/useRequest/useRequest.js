@@ -36,10 +36,10 @@ export const useRequest = (config) => {
     if (serverData) {
       setError(null);
       setData(serverData);
+    }
 
-      if (onSuccess) {
-        onSuccess(serverData);
-      }
+    if (onSuccess) {
+      onSuccess(serverData);
     }
   };
 

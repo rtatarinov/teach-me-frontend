@@ -146,9 +146,9 @@ export const Languages = () => {
   };
 
   const handleLanguageChange = (language) => {
-    const { value } = language;
+    const { iso } = language;
     const indexOfElement = selectedOptions.findIndex(
-      (item) => item.iso === value,
+      (item) => item.iso === iso,
     );
 
     if (selectedOptions.length === 1 && indexOfElement !== -1) {

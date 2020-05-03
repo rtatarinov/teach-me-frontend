@@ -25,6 +25,9 @@ const BackButton = styled(Button)`
   }
 `;
 
+// eslint-disable-next-line
+const TIME_OF_MATCHING = 5000;
+
 export const Footer = ({ selectedTags = [] }) => {
   const hasSelectedTags = !isEmpty(selectedTags);
   const [requestStatus, setRequestStatus] = useState(

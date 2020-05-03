@@ -65,17 +65,16 @@ const AlertComponent = ({
     setIsShown(false);
   };
 
-  const delayHideAlert = () => {
-    setTimeout(() => {
-      if (isShown) {
-        setIsShown(false);
-      }
-    }, shownTime);
-  };
+  const delayHideAlert = setTimeout(() => {
+    if (isShown) {
+      setIsShown(false);
+    }
+  }, shownTime);
 
   useUpdateEffect(() => {
     if (isShown) {
-      delayHideAlert();
+      // eslint-disable-next-line  no-unused-expressions
+      delayHideAlert;
     }
 
     return () => {

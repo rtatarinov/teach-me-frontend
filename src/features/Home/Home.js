@@ -94,15 +94,13 @@ const TIME_OF_DISPLAY_PAGE = 2000;
 export const Home = () => {
   const { isMobile } = useScreenSize();
   const token = getToken('token');
-
-  const delayDisplayPage = () => {
-    setTimeout(() => {
-      history.push(token ? ROUTES.WANT_LEARN : ROUTES.SIGN_IN);
-    }, TIME_OF_DISPLAY_PAGE);
-  };
+  const redirect = () =>
+    history.push(token ? ROUTES.WANT_LEARN : ROUTES.SIGN_IN);
+  const delayDisplayPage = setTimeout(redirect, TIME_OF_DISPLAY_PAGE);
 
   useEffectOnce(() => {
-    delayDisplayPage();
+    // eslint-disable-next-line  no-unused-expressions
+    delayDisplayPage;
 
     return () => {
       clearTimeout(delayDisplayPage);
