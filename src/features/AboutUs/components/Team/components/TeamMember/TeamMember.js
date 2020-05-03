@@ -88,12 +88,16 @@ const TeamMemberComponent = ({ member, className }) => {
       </Header>
       <Description>{description}</Description>
       <Links>
-        <Link href={portfolioLink} target="_blank">
-          Portfolio
-        </Link>
-        <Link href={contactsLink} target="_blank">
-          Contact
-        </Link>
+        {portfolioLink && (
+          <Link href={portfolioLink} target="_blank">
+            Portfolio
+          </Link>
+        )}
+        {contactsLink && (
+          <Link href={contactsLink} target="_blank">
+            Contact
+          </Link>
+        )}
       </Links>
     </Member>
   );

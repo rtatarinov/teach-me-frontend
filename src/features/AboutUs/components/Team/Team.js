@@ -40,10 +40,7 @@ const team = [
     avatar: '/img/team/roman.jpg',
     name: 'Roman',
     position: 'Front-end developer',
-    description:
-      'Site of the Day - Awwwards Winner. Winner of Hakaton in Salekhard (2019), Finalist of Hakaton VK 2017/19. ',
-    portfolioLink: '#',
-    contactsLink: '#',
+    contactsLink: 'mailto:tatarinov.roma@gmail.com',
   },
   {
     id: 3,
