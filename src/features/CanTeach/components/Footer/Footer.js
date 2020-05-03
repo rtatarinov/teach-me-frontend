@@ -57,11 +57,9 @@ export const Footer = ({ selectedTags = [] }) => {
 
   const handleClickStartButton = () => {
     const payload = {
-      body: {
-        alreadyKnow: selectedTags,
-        wantToKnow: wantToLearnTags,
-        lang: selectedLanguages,
-      },
+      alreadyKnow: selectedTags,
+      wantToKnow: wantToLearnTags,
+      lang: selectedLanguages,
     };
 
     createConference(payload);
