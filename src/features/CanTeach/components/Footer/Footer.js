@@ -9,7 +9,6 @@ import { ROUTES, REQUEST_STATUS } from '@common/constants';
 import { Alert } from '@components/UI/Alert';
 import { media } from '@styles/utils';
 import { useRequest } from '@hooks/useRequest';
-import { getToken } from '@utils/token';
 import { SearchBlock } from './components/SearchBlock';
 import { Invitation } from './components/Invitation';
 
@@ -52,7 +51,7 @@ export const Footer = ({ selectedTags = [] }) => {
     .split(',');
 
   const [{ data: matchedConference }, getMatchedConference] = useRequest({
-    url: '/matches/conference',
+    url: '/users/conference',
     withCredentials: true,
   });
 
@@ -97,11 +96,7 @@ export const Footer = ({ selectedTags = [] }) => {
     if (isEmpty(matchedConference)) {
       reFetchMatchedConference();
     } else {
-      const result = matchedConference.find(
-        (item) => item.userId === `Bearer ${getToken()}`,
-      );
-
-      setMatchedLink(result.link);
+      setMatchedLink(matchedConference.link);
       setRequestStatus(REQUEST_STATUS.SUCCESS);
     }
   }, [matchedConference]);

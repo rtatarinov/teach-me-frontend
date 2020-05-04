@@ -36,6 +36,8 @@ export const useRequest = (config) => {
     if (serverData) {
       setError(null);
       setData(serverData);
+    } else {
+      setData([]);
     }
 
     if (onSuccess) {
