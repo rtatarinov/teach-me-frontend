@@ -1,48 +1,41 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { Button } from '@components/UI/Button';
-import { useScreenSize } from '@hooks/useScreenSize';
-import { Timer } from '@components/Timer';
+/* import { useScreenSize } from '@hooks/useScreenSize';
+import { Timer } from '@components/Timer'; */
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const TextWrapper = styled.div`
+/* const TextWrapper = styled.div`
   max-width: 300px;
   font-weight: ${({ theme }) => theme.fonts.weight.medium};
   text-align: right;
-`;
+`; */
 
 const AcceptButton = styled(Button)`
   margin-left: 70px;
+
+  ${Button.Children} {
+    text-align: center;
+  }
 `;
 
-const StyledTimer = styled(Timer)`
-  margin-left: 7px;
-  opacity: 0.75;
-`;
-
-const InvitationComponent = () => {
-  const { isMobile } = useScreenSize();
-  const handleClickAcceptButton = () => {};
-  const handleExpire = () => {};
+const InvitationComponent = ({ link }) => {
+  // const { isMobile } = useScreenSize();
 
   return (
     <Wrapper>
-      {!isMobile && (
+      {/*      {!isMobile && (
         <TextWrapper>
           If the conversation partner does not connect, restart the search
         </TextWrapper>
-      )}
-      <AcceptButton
-        bgColor="green"
-        color="white"
-        onClick={handleClickAcceptButton}
-      >
+      )} */}
+      <AcceptButton bgColor="green" color="white" href={link}>
         Accept
-        <StyledTimer onExpire={handleExpire} withAutoStart />
+        {/* <StyledTimer onExpire={handleExpire} withAutoStart /> */}
       </AcceptButton>
     </Wrapper>
   );

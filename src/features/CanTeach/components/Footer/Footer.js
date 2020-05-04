@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useUpdateEffect } from 'react-use';
+import { useUpdateEffect, useAsyncFn } from 'react-use';
 import { isEmpty } from '@utils/isEmpty';
 import { Content } from '@components/UI/Content';
 import { Button } from '@components/UI/Button';
@@ -9,6 +9,7 @@ import { ROUTES, REQUEST_STATUS } from '@common/constants';
 import { Alert } from '@components/UI/Alert';
 import { media } from '@styles/utils';
 import { useRequest } from '@hooks/useRequest';
+import { getToken } from '@utils/token';
 import { SearchBlock } from './components/SearchBlock';
 import { Invitation } from './components/Invitation';
 
@@ -25,7 +26,10 @@ const BackButton = styled(Button)`
   }
 `;
 
-// eslint-disable-next-line
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 const TIME_OF_MATCHING = 5000;
 
 export const Footer = ({ selectedTags = [] }) => {
@@ -34,6 +38,7 @@ export const Footer = ({ selectedTags = [] }) => {
     hasSelectedTags ? REQUEST_STATUS.READY : null,
   );
   const [error, setError] = useState(null);
+  const [matchedLink, setMatchedLink] = useState(null);
 
   const wantToLearnTags = window.localStorage
     .getItem('wantToLearnTags')
@@ -46,12 +51,18 @@ export const Footer = ({ selectedTags = [] }) => {
     .getItem('selectedLanguages')
     .split(',');
 
+  const [{ data: matchedConference }, getMatchedConference] = useRequest({
+    url: '/matches/conference',
+    withCredentials: true,
+  });
+
   const [{ isLoading }, createConference] = useRequest({
     url: '/users',
     method: 'post',
     withCredentials: true,
     onSuccess: () => {
       setRequestStatus(REQUEST_STATUS.SENT);
+      getMatchedConference();
     },
     onError: (errors) => {
       setError(errors);
@@ -68,9 +79,32 @@ export const Footer = ({ selectedTags = [] }) => {
     createConference(payload);
   };
 
+  // eslint-disable-next-line
+  const [_, reFetchMatchedConference] = useAsyncFn(async () => {
+    await sleep(TIME_OF_MATCHING);
+    getMatchedConference();
+  });
+
   useUpdateEffect(() => {
     setRequestStatus(hasSelectedTags ? REQUEST_STATUS.READY : null);
   }, [hasSelectedTags]);
+
+  useUpdateEffect(() => {
+    if (requestStatus !== REQUEST_STATUS.SENT) {
+      return;
+    }
+
+    if (isEmpty(matchedConference)) {
+      reFetchMatchedConference();
+    } else {
+      const result = matchedConference.find(
+        (item) => item.userId === `Bearer ${getToken()}`,
+      );
+
+      setMatchedLink(result.link);
+      setRequestStatus(REQUEST_STATUS.SUCCESS);
+    }
+  }, [matchedConference]);
 
   return (
     <Content.Footer>
@@ -87,7 +121,9 @@ export const Footer = ({ selectedTags = [] }) => {
       {requestStatus === REQUEST_STATUS.SENT && (
         <SearchBlock setRequestStatus={setRequestStatus} />
       )}
-      {requestStatus === REQUEST_STATUS.SUCCESS && <Invitation />}
+      {requestStatus === REQUEST_STATUS.SUCCESS && matchedLink && (
+        <Invitation link={matchedLink} />
+      )}
       {requestStatus === REQUEST_STATUS.READY && (
         <Button
           bgColor="purple"

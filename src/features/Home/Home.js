@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useEffectOnce } from 'react-use';
+import { useUpdateEffect, useTimeout } from 'react-use';
 import { opacify } from 'polished';
 import { history } from '@src/history';
 import { ROUTES } from '@common/constants';
@@ -94,18 +94,14 @@ const TIME_OF_DISPLAY_PAGE = 2000;
 export const Home = () => {
   const { isMobile } = useScreenSize();
   const token = getToken('token');
-  const redirect = () =>
-    history.push(token ? ROUTES.WANT_LEARN : ROUTES.SIGN_IN);
-  const delayDisplayPage = setTimeout(redirect, TIME_OF_DISPLAY_PAGE);
+  const [isReady] = useTimeout(TIME_OF_DISPLAY_PAGE);
+  const start = isReady();
 
-  useEffectOnce(() => {
-    // eslint-disable-next-line  no-unused-expressions
-    delayDisplayPage;
-
-    return () => {
-      clearTimeout(delayDisplayPage);
-    };
-  });
+  useUpdateEffect(() => {
+    if (start) {
+      history.push(token ? ROUTES.WANT_LEARN : ROUTES.SIGN_IN);
+    }
+  }, [start]);
 
   return (
     <Wrapper to={ROUTES.SIGN_IN}>
