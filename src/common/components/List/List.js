@@ -16,7 +16,7 @@ const StyledCheckbox = styled(Checkbox)`
   }
 `;
 
-export const List = ({ items, selectedItems, onChange, children }) => (
+export const List = ({ items = [], selectedItems, onChange, children }) => (
   <>
     <ListWrapper>
       {items.map(({ id, name, isActive }) => (
