@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 RUN yarn install --non-interactive && yarn build
 
-FROM node:12.16-alpine
+FROM node:12.16.3
 WORKDIR /app
 COPY --from=build /app/build ./build
 COPY --from=build /app/server.js .
